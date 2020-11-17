@@ -33,6 +33,23 @@ app.use(session({
  saveUninitialized: true
 }));
 
+app.listen(3000, function(){
+    console.log('listening on 3000');
+   });
+   
+app.get('/home', function(req,res){
+
+    res.send("Homepage von CinemaBooking");
+
+    //TODO
+
+});
+
+// Weiterleitung auf Homepage
+app.get('/', function(req, res){
+    res.redirect("/home");
+});
+
 
 
 
