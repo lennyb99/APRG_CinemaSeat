@@ -1,0 +1,27 @@
+{
+  "name": "aprg_cinemabooking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lennyb99/APRG_CinemaBooking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lennyb99/APRG_CinemaBooking/issues"
+  },
+  "homepage": "https://github.com/lennyb99/APRG_CinemaBooking#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "sqlite3": "^5.0.0"
+  }
+}
