@@ -50,7 +50,7 @@ app.get('/', function(req, res){
     res.redirect("/home");
 });
 
-
+console.log("TEST TEST TEST")
 
 
 
