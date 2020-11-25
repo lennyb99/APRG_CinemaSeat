@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Login</title>
+    </head>
+
+    <body>
+        <h1>Bitte Einloggen</h1>
+
+        <form action="/login" method="POST">
+            <label for="fname">Email</label>
+            <input type="email" name="email"><br><br>
+            <label for="lname">Passwort</label>
+            <input type="password" name="passwort"><br><br>
+            <input type="submit" value="Einloggen">
+        </form>
+        <br>
+        <form action="/home">
+            <button type="submit">Startseite</button>
+        </form>
+        <br>
+        <form action="/goto_register">
+            <input type="submit" value="Registrierung">
+    </form>
+        
+    </body>
+
+</html>

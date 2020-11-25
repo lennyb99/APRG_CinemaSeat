@@ -37,20 +37,24 @@ app.listen(3000, function(){
     console.log('listening on 3000');
    });
    
-app.get('/home', function(req,res){
-
-    res.send("Homepage von CinemaBooking");
-
     //TODO
 
+
+
+// Link zur Homepage
+app.get('/home', function(req, res){
+    res.sendFile(__dirname + "/views/home.html")
 });
+//Link zur Login-Seite
+app.get("/goto_login", function(req, res){
+    res.sendFile(__dirname + "/views/login.html")
+    });
+//Link zur Registrieungsseite
+app.get("/goto_register", function(req,res){
+    res.sendFile(__dirname + "/views/register.html")
 
-// Weiterleitung auf Homepage
-app.get('/', function(req, res){
-    res.redirect("/home");
+})
+//Link zur Kino-infopage
+app.get("/goto_info", function(req,res){
+    res.sendFile(__dirname + "/views/info.html")
 });
-
-console.log("TEST TEST TEST")
-
-
-
