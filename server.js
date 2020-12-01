@@ -63,14 +63,33 @@ app.get("/goto_info", function(req,res){
 });
 
 //Link zur Fehlerhaften Registrierung
-app.get("/register_error", function(req, res){
+app.get("/goto_register_error", function(req, res){
     res.sendFile(__dirname + "/views/register_error.html")
 });
 
 //Link zur Erfolgreichen Registrierung
-app.get("/register_success", function(req, res){
-    res.sendFile(__dirname + "/views/register_error.html")
+app.get("/goto_register_success", function(req, res){
+    res.sendFile(__dirname + "/views/register_success.html")
 });
+
+//Link zu Fehlerhaften Login-Daten
+app.get("/goto_login_error", function(req,res) {
+    res.sendFile(__dirname + "/views/login_error.html")
+});
+
+//Link zu Erfolgreiche Anmeldung(EJS)
+app.get("/submit_login", function(req, res) {
+    res.render("account")
+});
+
+//Link zu Kontoeinstellungen(EJS)
+app.get("/goto_account_settings", function(req,res){
+    res.render("account_settings")
+
+})
+
+
+
 /*  Methode, um einen neuen Benutzer in der Datenbank anzulegen. Der Benutzername und das Passwort des neuen Nutzers 
     müssen beim Aufruf übergeben werden */
 
