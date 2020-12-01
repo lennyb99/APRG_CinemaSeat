@@ -12,14 +12,14 @@ app.set('view engine', 'ejs');
 
 // Initialisiere Datenbankmodul sqlite3
 const sqlite3 = require('sqlite3').verbose();
-// TODO:
-/*
-let db = new sqlite3.Database('DATENBANK.db', (err) => {
- if (err) {
- console.error(err.message);
- }
- console.log('Connected to the shop database.');
- */
+
+
+let db = new sqlite3.Database('cinema.db', (err) => {
+if (err) {
+    console.error(err.message);
+}
+console.log('Connected to the cinema database.');
+});
 
 // Initialisiere Modul cookie-parser
 const cookieParser = require('cookie-parser');
@@ -71,3 +71,24 @@ app.get("/register_error", function(req, res){
 app.get("/register_success", function(req, res){
     res.sendFile(__dirname + "/views/register_error.html")
 });
+/*  Methode, um einen neuen Benutzer in der Datenbank anzulegen. Der Benutzername und das Passwort des neuen Nutzers 
+    müssen beim Aufruf übergeben werden */
+
+function benutzerHinzufuegen(benutzername, passwort){
+    if(!benutzername || !passwort){
+        return false;
+    }
+    db.run(
+        `INSERT INTO benutzer(benutzername, passwort) VALUES ("${benutzername}","${passwort}")`,
+    )
+}
+
+/* Methode, um einen bestimmten Nutzer aus der Datenbank zu entfernen. Die ID des Benutzers aus der Datenbank muss übergeben werden. */
+
+function benutzerLoeschen(id){
+    db.run(
+        `DELETE FROM benutzer WHERE id=${id}`,
+    )
+}
+
+benutzerHinzufuegen("Axel", "test");
