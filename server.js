@@ -82,4 +82,3 @@ function benutzerLoeschen(id){
     )
 }
 
-benutzerHinzufuegen("Axel", "test");
