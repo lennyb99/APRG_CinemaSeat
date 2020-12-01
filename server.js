@@ -62,6 +62,15 @@ app.get("/goto_info", function(req,res){
     res.sendFile(__dirname + "/views/info.html")
 });
 
+//Link zur Fehlerhaften Registrierung
+app.get("/register_error", function(req, res){
+    res.sendFile(__dirname + "/views/register_error.html")
+});
+
+//Link zur Erfolgreichen Registrierung
+app.get("/register_success", function(req, res){
+    res.sendFile(__dirname + "/views/register_error.html")
+});
 /*  Methode, um einen neuen Benutzer in der Datenbank anzulegen. Der Benutzername und das Passwort des neuen Nutzers 
     müssen beim Aufruf übergeben werden */
 
