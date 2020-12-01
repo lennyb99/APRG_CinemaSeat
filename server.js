@@ -61,3 +61,13 @@ app.get("/goto_register", function(req,res){
 app.get("/goto_info", function(req,res){
     res.sendFile(__dirname + "/views/info.html")
 });
+
+//Link zur Fehlerhaften Registrierung
+app.get("/register_error", function(req, res){
+    res.sendFile(__dirname + "/views/register_error.html")
+});
+
+//Link zur Erfolgreichen Registrierung
+app.get("/register_success", function(req, res){
+    res.sendFile(__dirname + "/views/register_error.html")
+});
