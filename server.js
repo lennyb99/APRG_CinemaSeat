@@ -39,7 +39,10 @@ app.listen(3000, function(){
    
     //TODO
 
-
+// Redirect zur Startseite, falls keine angegeben. 
+app.get('/', function(req, res){
+    res.redirect('/home');
+});
 
 // Link zur Homepage
 app.get('/home', function(req, res){
