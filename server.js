@@ -74,12 +74,12 @@ app.get("/register_success", function(req, res){
 /*  Methode, um einen neuen Benutzer in der Datenbank anzulegen. Der Benutzername und das Passwort des neuen Nutzers 
     müssen beim Aufruf übergeben werden */
 
-function benutzerHinzufuegen(benutzername, passwort){
+function benutzerHinzufuegen(benutzername, passwort, vorname, nachname){
     if(!benutzername || !passwort){
         return false;
     }
     db.run(
-        `INSERT INTO benutzer(benutzername, passwort) VALUES ("${benutzername}","${passwort}")`,
+        `INSERT INTO benutzer(benutzername,vorname, nachname, passwort) VALUES ("${benutzername}","${vorname}","${nachname},${passwort}")`
     )
 }
 
