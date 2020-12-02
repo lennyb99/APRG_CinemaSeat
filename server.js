@@ -33,10 +33,20 @@ app.use(session({
  saveUninitialized: true
 }));
 
+
 app.listen(3000, function(){
     console.log('listening on 3000');
    });
-   
+
+
+   //Den Ordner Public Freigeben
+app.use(express.static(__dirname + '/public'));
+
+
+
+
+
+
     //TODO
 
 // Redirect zur Startseite, falls keine angegeben. 

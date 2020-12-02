@@ -1,0 +1,108 @@
+html {
+    box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background: #33155a;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  h1 {
+    width: 500px;
+    margin: 30px auto 20px;
+    margin-bottom: 5px;
+    color: #f0f0f0;
+    text-align: left;
+  }
+h2 {
+    width: auto;
+    margin: 5px auto 20px;
+    color: #c2c2c2;
+    text-align: center;
+
+}
+
+  
+  .nav {
+    width: 100%;
+    margin: 0 auto;
+    background: #2ad39b;
+    color: #f0f0f0;
+  }
+  .nav a {
+    display: block;
+    padding: 0 30px;
+    line-height: inherit;
+    cursor: pointer;
+  }
+  .nav__menu {
+    line-height: 50px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .nav__menu-item {
+    display: inline-block;
+    position: static;
+  }
+  .nav__menu-item:hover {
+    background-color: #7a468f;
+
+  }
+  .nav__menu-item:hover .nav__submenu {
+    display: block;
+  }
+  .nav__submenu {
+    font-weight: 300;
+    text-transform: none;
+    display: none;
+    position: absolute;
+    width: fit-content (5%);
+    background-color: #9b59b6;
+  }
+  .nav__submenu-item:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+
+
+
+
+
+.button{
+    size: 10px;
+    background-color: rgb(140, 84, 167);
+    border:200px;
+    border-radius: 10px;
+    color: white;
+    padding: 1% 1%;
+    margin-bottom: 10px; 
+    position: relative;
+    text-decoration: none;
+
+}
+
+p{
+padding-left: 20%;
+   color: white; 
+}
+
+form{
+    color: white;
+    padding-left: 20%;
+}
