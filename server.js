@@ -104,12 +104,12 @@ app.get("/goto_account_settings", function(req,res){
     müssen beim Aufruf übergeben werden */
 
 // TODO: Überprüfung auf Benutzer bereits vorhanden
-function benutzerHinzufuegen(benutzername, passwort, vorname, nachname){
-    if(!benutzername || !passwort){
+function benutzerHinzufuegen(email, passwort, vorname, nachname){
+    if(!email || !passwort || !vorname || !nachname){
         return false;
     }
     db.run(
-        `INSERT INTO benutzer(benutzername,vorname, nachname, passwort) VALUES ("${benutzername}","${vorname}","${nachname},${passwort}")`
+        `INSERT INTO benutzer(email,vorname, nachname, passwort) VALUES ("${email}","${vorname}","${nachname},${passwort}")`
     )
 }
 
