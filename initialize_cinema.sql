@@ -7,7 +7,7 @@
 
 CREATE TABLE benutzer (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    benutzername TEXT NOT NULL,
+    email TEXT NOT NULL,
     vorname TEXT NOT NULL,
     nachname TEXT NOT NULL,
     passwort TEXT NOT NULL
