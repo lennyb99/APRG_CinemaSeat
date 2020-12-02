@@ -93,6 +93,7 @@ app.get("/goto_account_settings", function(req,res){
 /*  Methode, um einen neuen Benutzer in der Datenbank anzulegen. Der Benutzername und das Passwort des neuen Nutzers 
     müssen beim Aufruf übergeben werden */
 
+// TODO: Überprüfung auf Benutzer bereits vorhanden
 function benutzerHinzufuegen(benutzername, passwort, vorname, nachname){
     if(!benutzername || !passwort){
         return false;
