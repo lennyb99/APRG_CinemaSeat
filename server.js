@@ -96,8 +96,17 @@ app.get("/submit_login", function(req, res) {
 app.get("/goto_account_settings", function(req,res){
     res.render("account_settings")
 
-})
-
+});
+//POST-Request zum Registrieren eines neuen Benutzers
+app.post("/oncreate", function (req, res){
+    const email = req.body.email;
+    const passwort = req.body.passwort;
+    const vorname = req.body.vorname;
+    const nachname = req.body.nachname;
+    benutzerHinzufuegen(email, passwort, vorname, nachname)
+    
+    });
+    
 
 
 /*  Methode, um einen neuen Benutzer in der Datenbank anzulegen. Der Benutzername und das Passwort des neuen Nutzers 
@@ -106,11 +115,12 @@ app.get("/goto_account_settings", function(req,res){
 // TODO: Überprüfung auf Benutzer bereits vorhanden
 function benutzerHinzufuegen(email, passwort, vorname, nachname){
     if(!email || !passwort || !vorname || !nachname){
-        return false;
+        res.Send("Bitte alle Felder Ausfüllen!");
     }
     db.run(
-        `INSERT INTO benutzer(email,vorname, nachname, passwort) VALUES ("${email}","${vorname}","${nachname},${passwort}")`
+        `INSERT INTO benutzer(email,vorname,nachname,passwort) VALUES ("${email}","${vorname}","${nachname},${passwort}")`
     )
+    res.redirect("/goto_register_success")
 }
 
 /* Methode, um einen bestimmten Nutzer aus der Datenbank zu entfernen. Die ID des Benutzers aus der Datenbank muss übergeben werden. */

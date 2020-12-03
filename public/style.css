@@ -32,13 +32,13 @@ html {
     color: #f0f0f0;
     text-align: left;
   }
-h2 {
-    width: auto;
-    margin: 5px auto 20px;
-    color: #c2c2c2;
-    text-align: center;
+  h2 {
+      width: auto;
+      margin: 5px auto 20px;
+      color: #c2c2c2;
+      text-align: center;
 
-}
+  }
 
   
   .nav {
@@ -83,27 +83,43 @@ h2 {
   
 
 
+  h3 {
+    width: 500px;
+    margin: 30px auto 20px;
+    margin-bottom: 5px;
+    color: #f0f0f0;
+    text-align: center;
+  }
+  h4 {
+      width: 500px;
+      margin: 5px auto 20px;
+      color: #c2c2c2;
+      text-align: center;
+
+  }
 
 
+  .button{
+      display: inline;
+      float: left;
+      size: 10px;
+      background-color: rgb(140, 84, 167);
+      border:200px;
+      color: white;
+      margin-top: 10%;
+      padding: 5px 5px;
+      margin-right: 10%; 
+      text-decoration: none;
+      line-height: 50px;
+      font-weight: 200;
 
-.button{
-    size: 10px;
-    background-color: rgb(140, 84, 167);
-    border:200px;
-    border-radius: 10px;
-    color: white;
-    padding: 1% 1%;
-    margin-bottom: 10px; 
-    position: relative;
-    text-decoration: none;
+  }
 
-}
-
-p{
-padding-left: 20%;
-   color: white; 
-}
-
+  p{
+    padding-left: 20%;
+    color: white; 
+    font-size: medium;
+  }
 form{
     color: white;
     padding-left: 20%;

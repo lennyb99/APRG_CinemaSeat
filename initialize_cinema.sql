@@ -1,3 +1,4 @@
+
 /*  
     Initialisiert die Datenbank.
     Erfolgt aus sqlite3 heraus mit dem Befehl .read initialize_cinema.sql
@@ -23,5 +24,4 @@ CREATE TABLE filmprogramm (
 )
 
 /* Tabelle für Statistiken */
-
 
