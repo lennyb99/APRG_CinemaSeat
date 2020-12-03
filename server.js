@@ -97,6 +97,8 @@ app.get("/goto_account_settings", function(req,res){
     res.render("account_settings")
 
 });
+//TODO: Post-request debuggen
+
 //POST-Request zum Registrieren eines neuen Benutzers
 app.post("/oncreate", function (req, res){
     const email = req.body.email;
