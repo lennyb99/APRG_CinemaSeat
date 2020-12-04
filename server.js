@@ -84,21 +84,20 @@ app.get("/submit_login", function (req, res) {
 });
 //Link zu Kontoeinstellungen(EJS)
 app.get("/goto_account_settings", function (req, res) {
-    res.render("account_settings")
+    res.render("account_settings", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": email, })
 
 });
 
 
 //POST-Request zum Registrieren eines neuen Benutzers
-//Benötigt die globale Variable "inputError". Unschöne Lösung, müsste man irgendwie noch besser hinkriegen.
-var inputError = false;
+
 app.post("/oncreate", function (req, res) {
     const email = req.body.email;
     const passwort = req.body.passwort;
     const vorname = req.body.vorname;
     const nachname = req.body.nachname;
     (benutzerHinzufuegen(email, vorname, nachname, passwort));
-    if (inputError) {
+    if (benutzerHinzufuegen.inputError) {
         res.redirect("goto_register_error")
     }
     else {
@@ -106,64 +105,64 @@ app.post("/oncreate", function (req, res) {
     }
 });
 //POST-Request zur Login überprüfung
-loginState = false;
-app.post("/submit_login", function(req, res){
+
+app.post("/submit_login", function (req, res) {
     const email = req.body.email;
     const passwort = req.body.passwort;
     const sql = `SELECT * FROM benutzer WHERE email = "${email}"`;
-    loginCheck(email,passwort);
+    loginCheck(email, passwort);
 
-/*  Methode, um einen neuen Benutzer in der Datenbank anzulegen. Der Benutzername und das Passwort des neuen Nutzers 
-    müssen beim Aufruf übergeben werden */
+    /*  Methode, um einen neuen Benutzer in der Datenbank anzulegen. Der Benutzername und das Passwort des neuen Nutzers 
+        müssen beim Aufruf übergeben werden */
 
-// TODO: Überprüfung auf Benutzer bereits vorhanden
-function benutzerHinzufuegen(email, vorname, nachname, passwort) {
-    if (!email || !passwort || !vorname || !nachname) {
-        inputError = true;
-        return;
+    // TODO: Überprüfung auf Benutzer bereits vorhanden
+    function benutzerHinzufuegen(email, vorname, nachname, passwort) {
+        var inputError = false;
+        if (!email || !passwort || !vorname || !nachname) {
+            inputError = true;
+            return;
+        }
+        db.run(
+            `INSERT INTO benutzer(email,vorname,nachname,passwort) VALUES ("${email}","${vorname}","${nachname}","${passwort}")`
+        );
+        inputError = false;
     }
-    db.run(
-        `INSERT INTO benutzer(email,vorname,nachname,passwort) VALUES ("${email}","${vorname}","${nachname}","${passwort}")`
-    );
-    inputError = false;
-}
 
-// Methode zum Zugangsdaten Prüfen und Login bzw. entsprechende Ausgabe. Es wird zunächst mit sql und rows.length geprüft
-//ob die eingegebene Email in der DB vorhanden ist, dann werden die Passwörter abgeglichen.
-//Benötigt atm noch die Globale Variable LoginState (Großes Sicherheitsrisiko!!)
-function loginCheck(email, passwort) {
+    // Methode zum Zugangsdaten Prüfen und Login bzw. entsprechende Ausgabe. Es wird zunächst mit sql und rows.length geprüft
+    //ob die eingegebene Email in der DB vorhanden ist, dann werden die Passwörter abgeglichen.
+    function loginCheck(email, passwort) {
+        state = false;
+        db.all(sql, function (err, rows) {
 
-    db.all(sql, function(err, rows){
-     
-        console.log(rows[0].passwort);
-        console.log(rows.length);
-        console.log(rows[0]);
-        if (rows.length <= 1){
-            //Aktuell stimmt mit dieser Abfrage irgendwas nicht. Selbst bei Richtigem Passwoert geht LoginState nie auf true.
-            if(rows[0].passwort == req.body.passwort){
-                loginState = true;     
-            }; 
-        };
-            if(loginState){
-                res.render("account",{"vorname": vorname, "nachname": nachname, "email": email,})
-                
+            console.log(rows[0].passwort);
+            console.log(rows[0]);
+            if (rows.length) {
+                console.log(rows.length);
+                if (rows[0].passwort == req.body.passwort) {
+                    state = true;
+                    console.log(rows[0].passwort)
+                };
+            };
+            if (state) {
+                res.render("account", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": email, })
+
             };
 
-            if(!loginState){
+            if (!state) {
                 res.redirect("goto_login_error")
             };
-        
-    });
-    
-};
+
+        });
+
+    };
 
 
 
-/* Methode, um einen bestimmten Nutzer aus der Datenbank zu entfernen. Die ID des Benutzers aus der Datenbank muss übergeben werden. */
+    /* Methode, um einen bestimmten Nutzer aus der Datenbank zu entfernen. Die ID des Benutzers aus der Datenbank muss übergeben werden. */
 
-function benutzerLoeschen(id) {
-    db.run(
-        `DELETE FROM benutzer WHERE id=${id}`,
-    )
-}
+    function benutzerLoeschen(id) {
+        db.run(
+            `DELETE FROM benutzer WHERE id=${id}`,
+        )
+    }
 })
