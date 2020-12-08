@@ -11,11 +11,12 @@ html {
   }
   
   body {
+    
     margin: 0;
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    background: #33155a;
+    background: #4d52616e;
   }
   
   nav ul {
@@ -123,4 +124,34 @@ html {
 form{
     color: white;
     padding-left: 20%;
+}
+.movie_prev{
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.322);
+  margin: 20px;
+  width: 500px;
+
+  height: available;
+  min-height: 700px;
+  float: left;
+  background-color: rgb(121, 128, 160);
+  border-collapse: collapse;
+
+}
+.ticket_button{
+  position: absolute;
+  bottom: 10px;
+  display: inline;
+  size: 10px;
+  background-color: rgb(140, 84, 167);
+  border:200px;
+  color: white;
+  padding: 5px 5px;
+  text-decoration: none;
+  line-height: 50px;
+  font-weight: 200;
+
 }

@@ -88,6 +88,12 @@ app.get("/goto_account_settings", function (req, res) {
 
 });
 
+//link zur Film-Detailansicht
+app.get("/goto_program", function (req, res){
+    res.render("program")
+
+});
+
 
 //POST-Request zum Registrieren eines neuen Benutzers
 
