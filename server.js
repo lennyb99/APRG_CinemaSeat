@@ -129,7 +129,7 @@ app.post("/submit_login", function (req, res) {
             return;
         }
         db.run(
-            `INSERT INTO benutzer(email,vorname,nachname,passwort) VALUES ("${email}","${vorname}","${nachname}","${passwort}")`
+            `INSERT INTO benutzer(email,vorname,nachname,passwort,rolle) VALUES ("${email}","${vorname}","${nachname}","${passwort}","${"user"})`
         );
         inputError = false;
     }
