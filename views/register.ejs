@@ -39,21 +39,21 @@
     <body>
         <form action="/oncreate" method="POST">
             Vorname: <br>
-            <input type="text" name="vorname"> <br>
+            <input type="text" name="vorname" required> <br>
             <p></p>
             Nachname: <br>
-            <input type="text" name="nachname"> <br>
+            <input type="text" name="nachname" required> <br>
             <p></p>
             Email Adresse: <br>
-            <input type="email" name="email"> <br>
+            <input type="email" name="email" required> <br>
             <p></p>
             Passwort Festlegen: <br>
-            <input type="password" name="passwort"> 
+            <input type="password" name="passwort" required> 
             <p></p>
             <button type="submit"> Neues Konto anlegen</button>
         </form>
 
-      
+        <h2> <%= fehlertext %> </h2>
     </body>
 
 
