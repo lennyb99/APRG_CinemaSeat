@@ -47,5 +47,4 @@ app.listen(3000, function () {
 });
 
 // GET/-POST-Requests, liegen im Routes-Verzeichnis ------------------------------------------------------
-
 require('./routes')(app,db,passwordHasher);
