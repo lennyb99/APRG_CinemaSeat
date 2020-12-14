@@ -1,5 +1,8 @@
 module.exports = function(app, db,passwordHasher){
 
+
+    // Login:
+    // Wird aufgerufen, wenn auf den Login-Button auf der Seite "login.html" geklickt wird.
     app.post("/submit_login", function (req, res) {
         const email = req.body.email;
         const passwort = req.body.passwort;
@@ -23,6 +26,8 @@ module.exports = function(app, db,passwordHasher){
 
 
 
+// Registrierung eines neuen Benutzers:
+// Wird aufgerufen, wenn auf den Registrieren-Button auf der Seite "register.html" geklickt wird.
 
 app.post("/oncreate", function (req, res) {
     const email = req.body.email;
