@@ -1,4 +1,4 @@
-module.exports = {checkPassword};
+module.exports = {benutzerLoeschen};
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
