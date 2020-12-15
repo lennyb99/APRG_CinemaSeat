@@ -41,13 +41,16 @@ module.exports = function(app, db,passwordHasher){
     //Link zur Film-Detailansicht
     app.get("/goto_program", function (req, res){
         
-        db.all(`SELECT filmtitel FROM filmprogramm;`,function(err,rows){
+        db.all(`SELECT * FROM filmprogramm;`,function(err,rows){
             var aktuellesProgramm = []
+            var kennungen = []
             for(var i = 0; i < rows.length; i++){
                 aktuellesProgramm.push(rows[i].filmtitel)
+                kennungen.push(rows[i].kennung)
             }
             res.render("program", {
-                filmtitel : aktuellesProgramm
+                filmtitel : aktuellesProgramm,
+                fotokennung: kennungen
             })
         })
     });
