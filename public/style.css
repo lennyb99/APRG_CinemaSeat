@@ -31,44 +31,45 @@ html {
   }
 
   
-  .nav {
+  #nav {
     width: 100%;
     margin: 0 auto;
     background: #2B7A78;
     color: #f0f0f0;
   }
-  .nav a {
+  #nav a {
     display: block;
     padding: 0 50px;
     line-height: inherit;
     cursor: pointer;
   }
-  .nav__menu {
+  #nav__menu {
     line-height: 50px;
     font-weight: 500;
     width: fit-content (20%);
     text-transform: uppercase;
   }
-  .nav__menu-item {
+  #nav__menu-item {
     display: inline-block;
     position: static;
   }
-  .nav__menu-item:hover {
+  #nav__menu-item:hover {
     background-color: #184443;
 
   }
-  .nav__menu-item:hover .nav__submenu {
+  #nav__menu-item:hover #nav__submenu {
     display: block;
   }
-  .nav__submenu {
+  #nav__submenu {
     font-weight: 300;
     text-transform: none;
     display: none;
     position: absolute;
     width: fit-content (5%);
     background-color: #184443;
+    z-index: 100;
   }
-  .nav__submenu-item:hover {
+  #nav__submenu-item:hover {
     background: rgba(197, 197, 197, 0.39);
   }
   
