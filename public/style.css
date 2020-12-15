@@ -1,5 +1,9 @@
 
+
+
 /*Quellenangabe Navigationsleiste: https://codepen.io/mikerojas87/pen/rojKb */
+
+
 html {
     box-sizing: border-box;
   }
@@ -16,7 +20,7 @@ html {
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    background: #4d52616e;
+    background: #3AAFA9;
   }
   
   nav ul {
@@ -25,38 +29,24 @@ html {
     margin-top: 0;
     margin-bottom: 0;
   }
-  
-  h1 {
-    width: 500px;
-    margin: 30px auto 20px;
-    margin-bottom: 5px;
-    color: #f0f0f0;
-    text-align: left;
-  }
-  h2 {
-      width: auto;
-      margin: 5px auto 20px;
-      color: #c2c2c2;
-      text-align: center;
-
-  }
 
   
   .nav {
     width: 100%;
     margin: 0 auto;
-    background: #2ad39b;
+    background: #2B7A78;
     color: #f0f0f0;
   }
   .nav a {
     display: block;
-    padding: 0 30px;
+    padding: 0 50px;
     line-height: inherit;
     cursor: pointer;
   }
   .nav__menu {
     line-height: 50px;
     font-weight: 500;
+    width: fit-content (20%);
     text-transform: uppercase;
   }
   .nav__menu-item {
@@ -64,7 +54,7 @@ html {
     position: static;
   }
   .nav__menu-item:hover {
-    background-color: #7a468f;
+    background-color: #184443;
 
   }
   .nav__menu-item:hover .nav__submenu {
@@ -76,28 +66,13 @@ html {
     display: none;
     position: absolute;
     width: fit-content (5%);
-    background-color: #9b59b6;
+    background-color: #184443;
   }
   .nav__submenu-item:hover {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(197, 197, 197, 0.39);
   }
   
-
-
-  h3 {
-    width: 500px;
-    margin: 30px auto 20px;
-    margin-bottom: 5px;
-    color: #f0f0f0;
-    text-align: center;
-  }
-  h4 {
-      width: 500px;
-      margin: 5px auto 20px;
-      color: #c2c2c2;
-      text-align: center;
-
-  }
+  
 
 
   .button{
@@ -128,7 +103,11 @@ form{
 .movie_prev{
   position: relative;
   padding: 20px;
+  padding-bottom: 100px;
   text-align: center;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
   border-radius: 5px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.322);
   margin: 20px;
@@ -137,21 +116,61 @@ form{
   height: available;
   min-height: 700px;
   float: left;
-  background-color: rgb(121, 128, 160);
+  background-color: #db9647;
   border-collapse: collapse;
 
 }
 .ticket_button{
+  float: center;
   position: absolute;
-  bottom: 10px;
+  top: 90%;
+  left: 30%;
+  border-radius: 5px;
   display: inline;
   size: 10px;
-  background-color: rgb(140, 84, 167);
+  background-color: #2B7A78;
   border:200px;
   color: white;
   padding: 5px 5px;
   text-decoration: none;
   line-height: 50px;
   font-weight: 200;
+
+}
+.ticket_button:hover{
+  background-color: rgb(21, 180, 0);
+
+
+}
+
+h1 {
+  width: 500px;
+  margin: 30px auto 20px;
+  margin-bottom: 5px;
+  color: #f0f0f0;
+  text-align: left;
+}
+h2 {
+    width: auto;
+    margin: 5px auto 20px;
+    color: #db9647;
+    text-align: center;
+
+}
+
+h3 {
+  width: 500px;
+  margin: 30px auto 20px;
+  margin-bottom: 5px;
+  color: #f0f0f0;
+  font-weight: 400;
+  text-align: center;
+}
+h4 {
+    width: 500px;
+    margin: 5px auto 20px;
+    color: #db9647;
+    font-weight: 400;
+    text-align: center;
 
 }
