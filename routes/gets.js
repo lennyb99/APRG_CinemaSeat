@@ -40,6 +40,16 @@ module.exports = function(app, db,passwordHasher){
 
     //Link zur Film-Detailansicht
     app.get("/goto_program", function (req, res){
-        res.render("program")
+        
+        db.all(`SELECT filmtitel FROM filmprogramm;`,function(err,rows){
+            var aktuellesProgramm = []
+            for(var i = 0; i < rows.length; i++){
+                aktuellesProgramm.push(rows[i].filmtitel)
+            }
+            res.render("program", {
+                filmtitel : aktuellesProgramm
+            })
+        })
     });
+    
 }

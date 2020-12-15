@@ -7,31 +7,15 @@
             <title> Mein Konto</title>
             <%- include('navbar')%>
     </head>
-           
        
     <div>
+        <%for (var i = 0; i < filmtitel.length; i++) {%>
         <div class="movie_prev">
-                <div>James Bond: Ein neuer Auftrag </div> 
+                <div> <%=filmtitel[i] %> </div> 
 
                 <div class="ticket_button">Jetzt Tickets Sichern</div>
         </div>
-        <div class="movie_prev">
-                <div>Star Wars: Episode 10 </div> 
-
-                <div class="ticket_button">Jetzt Tickets Sichern</div>
-        </div>
-        <div class="movie_prev">
-                <div>2020 The Movie</div> 
-
-                <div class="ticket_button">Jetzt Tickets Sichern</div>
-        </div>
-        <div class="movie_prev">
-                <div>Narvel's The Revengers </div> 
-
-                <div class="ticket_button">Jetzt Tickets Sichern</div>
-        </div>
+        <%}%>     
     </div>
-
-
-
 </html>
+
