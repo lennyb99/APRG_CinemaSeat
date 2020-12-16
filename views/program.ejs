@@ -12,7 +12,8 @@
         <div class="movie_prev">
                 <div> <%=filmtitel[i] %> </div> 
                 <div><img width=75% src=<%=fotokennung[i].toString() + ".jpg" %>></div>
-                <div class="ticket_button">Jetzt Tickets Sichern</div> 
+                <div> <form action="/getMovieSelect" method="POST"> <button type="submit" name="kennung" value=<%=fotokennung[i].toString() %> class="ticket_button">Jetzt Tickets Sichern</button></form></div> 
+                
         </div>
         <%}%>     
     </div>

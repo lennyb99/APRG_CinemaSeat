@@ -22,7 +22,6 @@ module.exports = function(app, db,passwordHasher){
         });  
     });
 
-
     // Registrierung eines neuen Benutzers:
     // Wird aufgerufen, wenn auf den Registrieren-Button auf der Seite "register.html" geklickt wird.
     app.post("/oncreate", function (req, res) {
@@ -47,17 +46,36 @@ module.exports = function(app, db,passwordHasher){
         });
     });
 
-// Wird aufgerufen, wenn der Nutzer den "jetzt Ticket kaufen" Button auf der Seite program.ejs drückt.
+    // Wird aufgerufen, wenn der Nutzer den "jetzt Ticket kaufen" Button auf der Seite program.ejs drückt.
 
-app.post("/movieSelect", function(req, res){
-    const index = req.body.index;
+    app.post("/getMovieSelect", function(req, res){
+        var kennung = req.body.kennung;
 
-    res.render("movieSelect");
+        db.get(`SELECT * FROM filmprogramm WHERE kennung = "${kennung}";`,function(err,rows){
+            
+            titel = rows.filmtitel
+            beschreibung = rows.beschreibung
+            preis = rows.eintrittspreis
+            trailer = rows.trailer
+            
+            
+            res.render("movieSelect",{titel, beschreibung, preis, trailer,kennung});
+        })  
+    })
 
-})
+    // Wird aufgerufen, wenn der Nutzer den "Zur Sitzwahl" Button drückt und leitet weiter zu seatSelect.ejs
 
+    app.post("/getSeatSelect", function(req,res){
+        kennung = req.body.kennung
 
-
-
-
+        db.get(`SELECT * FROM filmprogramm WHERE kennung = "${kennung}";`,function(err,rows){
+            
+            titel = rows.filmtitel
+            beschreibung = rows.beschreibung
+            preis = rows.eintrittspreis
+            trailer = rows.trailer
+    
+            res.render("seatSelect",{kennung,titel});
+        })  
+    })
 };

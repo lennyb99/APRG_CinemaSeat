@@ -5,6 +5,23 @@
         <link type="text/css" rel="stylesheet" href="style.css" />
         <title> Registrierung</title>
         <%- include('navbar')%>
+
+        <!------------------Titel------------------->
+        <h1><%=titel %></h1>
+        <!------------------Trailer------------------->
+        <div>
+            <iframe width="560" height="315" src=<%=trailer.toString()%> frameborder="0" allowfullscreen></iframe>
+        </div>
+        <!------------------Beschreibung------------------->
+        <p1>
+            <%=beschreibung%>
+            <%=kennung%>
+        </p1>
+        <!------------------Button zur Platzwahl------------------->
+        <p2>
+            <form action="/getSeatSelect" method="POST"> <button type="submit" name="kennung" value=<%=kennung%> class="ticket_button">Zur Sitzwahl</button></form>
+        </p2>
+
 </head>
 
 </html>
