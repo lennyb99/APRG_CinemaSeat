@@ -1,4 +1,4 @@
-// Importiert das Skript "functionLibrary.js" mit den Hilfsfunktionen.
+// Importiert das Skript mit den Hilfsfunktionen.
 const fl = require("./scripts/functionLibrary.js");
 
 // Initialisiert Module ------------------------------------------
@@ -38,7 +38,7 @@ app.use(session({
 // "password-hash"
 const passwordHasher = require("password-hash");
 
-//Den Ordner Public Freigeben ----------------------------------------
+// Den Ordner Public Freigeben ----------------------------------------
 app.use(express.static(__dirname + '/public'));
 
 // Startet den Server ------------------------------------------------
