@@ -51,4 +51,17 @@ app.post("/oncreate", function (req, res) {
         });
 });
 
+// Wird aufgerufen, wenn der Nutzer den "jetzt Ticket kaufen" Button auf der Seite program.ejs drückt.
+
+app.post("/movieSelect", function(req, res){
+    const index = req.body.index;
+
+    res.render("movieSelect");
+
+})
+
+
+
+
+
 };
