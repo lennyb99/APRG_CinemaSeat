@@ -6,4 +6,4 @@ module.exports = function(app,db,passwordHasher){
         var name = file.substr(0, file.indexOf('.'));
         require('./' + name)(app,db,passwordHasher);
     });
-}
+};
