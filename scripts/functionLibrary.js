@@ -1,7 +1,4 @@
 module.exports = {benutzerLoeschen};
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
 
 
 function benutzerLoeschen(id) {
