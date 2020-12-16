@@ -16,6 +16,14 @@
        <p2>
            Für den Film: <%=titel%>
        </p2>
+
+       <p3>
+        <form action="/getBuyConfirm" method="POST">
+            <label for="seat" >Sitzplatz (a-h,1-8)</label>
+            <input name="sitzplatz"required><br><br>
+            <button type="submit" name="kennung" value=<%=kennung%> class="ticket_button">Sitzplatzticket kaufen </button>
+        </form>
+       </p3>
        
 </head>
 

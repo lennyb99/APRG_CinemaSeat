@@ -78,4 +78,13 @@ module.exports = function(app, db,passwordHasher){
             res.render("seatSelect",{kennung,titel});
         })  
     })
+
+    app.post("/getBuyConfirm", function(req, res){
+
+        db.get(`SELECT * FROM filmprogramm WHERE kennung = "${kennung}";`)
+        res.render("buyConfirm")
+
+    })
+
+
 };
