@@ -34,8 +34,20 @@ module.exports = function(app, db,passwordHasher) {
 
     //Link zu Kontoeinstellungen(EJS)
     app.get("/goto_account_settings", function (req, res) {
-        res.render("account_settings", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": email, });
+        db.all(`SELECT * FROM benutzer;`,function(err,rows) {
+            
+            res.render("account_settings", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle });
+        });
     });
+   
+     //Link zur Benutzerverwaltung(Admin Only)
+     app.get("/goto_user_manager", function (req, res) {
+        db.all(`SELECT * FROM benutzer;`,function(err,rows) {
+            
+            res.render("user_manager", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle });
+    });
+});
+    
 
     //Link zur Film-Detailansicht
     app.get("/goto_program", function (req, res) {
@@ -52,5 +64,24 @@ module.exports = function(app, db,passwordHasher) {
             });
         });
     });
-    
-};
+
+    //Link zur benutzerverwaltung
+    app.get("/goto_user_manager", function (req, res) {
+        db.all(`SELECT * FROM benutzer;`,function(err,rows) {
+            var vornamen = []
+            var nachnamen = []
+            var emails = []
+            for(var i = 0; i < rows.length; i++){
+                vornamen.push(rows[i].vorname)
+                nachnamen.push(rows[i].nachname)
+                emails.push(rows[i].email)
+            }
+            console.log(rows)
+            console.log(rows.length)
+            res.render("user_manager", {
+                vornamen: vornamen, nachname: nachnamen, email: emails});
+        });
+        console.log(rows)
+        console.log(rows.length)
+    });
+}
