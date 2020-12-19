@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+        <head> 
+                <base href="/">               
+                <link type="text/css" rel="stylesheet" href="style.css" />
+                <title> CinemaSeat Startseite</title>
+                <%- include('navbar')%>
+        </head>
+        
+        <table border ="1">
+                <% for(var i = 0; i < vorname.length; i++) { %>
+                <tr>
+                    <td><%= vorname%></td> 
+                    <td><%= nachname %></td> 
+                    <td><%= email   %></td>
+                    
+    
+                </tr>
+    
+    
+                <% } %>
+    
+            </table>
+</html>
