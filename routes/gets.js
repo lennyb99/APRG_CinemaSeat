@@ -36,7 +36,7 @@ module.exports = function(app, db,passwordHasher) {
     app.get("/goto_account_settings", function (req, res) {
         db.all(`SELECT * FROM benutzer;`,function(err,rows) {
             
-            res.render("account_settings", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle });
+            res.render("account_settings", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle,sessionUserName: req.session.userName });
         });
     });
    
@@ -44,7 +44,7 @@ module.exports = function(app, db,passwordHasher) {
      app.get("/goto_user_manager", function (req, res) {
         db.all(`SELECT * FROM benutzer;`,function(err,rows) {
             
-            res.render("user_manager", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle });
+            res.render("user_manager", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle,sessionUserName: req.session.userName });
     });
 });
     
