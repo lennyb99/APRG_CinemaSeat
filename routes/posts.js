@@ -10,15 +10,17 @@ module.exports = function(app, db,passwordHasher){
         db.get( `SELECT * FROM benutzer WHERE email = "${email}"`, function(err, rows) {
             // Wenn diese Email nicht existiert, ist rows = undefinied.
             if (rows == undefined) {
-                res.render("login", {fehlertext: "Der eingegebene Benutzer existiert nicht!"});
+                res.render("login", {fehlertext: "Der eingegebene Benutzer existiert nicht!", sessionUserName: req.session.userName});
             }
             else if (passwordHasher.verify(passwort, rows.passwort)) { //passwordHasher.verify(unhashedX, hashedY) vergleicht, ob hashedY mit unhashedX übereinstimmt.
                 // erstellt Session:
                 req.session.userName = rows.vorname;
+                console.log(rows.vorname)
                 res.render("home", {sessionUserName: req.session.userName});
+                
             }
             else {
-                res.render("login", {fehlertext: "Das Passwort stimmt nicht!"});
+                res.render("login", {fehlertext: "Das Passwort stimmt nicht!",sessionUserName: req.session.userName});
             }
         });  
     });
@@ -61,7 +63,7 @@ module.exports = function(app, db,passwordHasher){
             trailer = rows.trailer
             
             
-            res.render("movieSelect",{titel, beschreibung, preis, trailer,kennung});
+            res.render("movieSelect",{titel, beschreibung, preis, trailer,kennung, sessionUserName: req.session.userName});
         })  
     })
 
@@ -77,7 +79,7 @@ module.exports = function(app, db,passwordHasher){
             preis = rows.eintrittspreis
             trailer = rows.trailer
     
-            res.render("seatSelect",{kennung,titel});
+            res.render("seatSelect",{kennung,titel, sessionUserName: req.session.userName});
         })  
     })
 
