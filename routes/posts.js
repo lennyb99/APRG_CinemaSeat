@@ -61,7 +61,7 @@ module.exports = function(app, db,passwordHasher){
             trailer = rows.trailer
             
             
-            res.render("movieSelect",{titel, beschreibung, preis, trailer,kennung});
+            res.render("movieSelect",{titel, beschreibung, preis, trailer, kennung, sessionUserName: req.session.userName});
         })  
     })
 
@@ -77,7 +77,7 @@ module.exports = function(app, db,passwordHasher){
             preis = rows.eintrittspreis
             trailer = rows.trailer
     
-            res.render("seatSelect",{kennung,titel});
+            res.render("seatSelect",{kennung, titel, sessionUserName: req.session.userName});
         })  
     })
 

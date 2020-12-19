@@ -22,9 +22,23 @@
             </p>
         </h2>
         <h2>
-       
+            <% switch (rolle) {
+                case 'admin' : %>
+                <a href="/goto_user_manager" class="button">Benutzerverwaltung</a>
+                <a href="/goto_account_settings" class="button">Kontodaten ändern</a>
+                <a href="/goto_delete_account" class="button">Konto Löschen</a>
+                        <% break;
+                
+                case 'user' : %>
+                <a href="/goto_admin_settings" class="button">Kontodaten ändern</a>
+                <a href="/goto_delete_account" class="button">Konto Löschen</a>
+                        <% break;
+                
+                } %>
+
+
         <p></p>
-        <a href="/goto_account_settings" class="button">Kontoeinstellungen</a>
+       
         <p></p>
         <a href="/goto_logout" class="button">Logout</a>   
         </h2>

@@ -27,7 +27,9 @@
     <li id="nav__menu-item"><a>Account</a>
         <ul id="nav__submenu">
 
-                <!-- Prüft ob die Sessionvariable gesetzt ist und führt dementsprechend die Blöcke aus. --> 
+                <!-- Prüft ob die Sessionvariable gesetzt ist und führt dementsprechend die Blöcke aus.
+                     D.h., dass alle ejs-Dateien, die die Navigationsbar benutzen, {sessionUserName: req.session.userName} übergeben bekommen haben müssen.
+                     Sollte der Benutzer sich nicht eingeloggt haben, so ist die Variable sessionUserName undefinied. --> 
                 <% if(sessionUserName) {%>
                         <li onclick="location.href='/goto_account_settings';" id="nav__submenu-item"> <a>Kontoeinstllungen von <%= sessionUserName %></a></li>
         
