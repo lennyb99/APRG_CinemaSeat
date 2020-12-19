@@ -2,27 +2,27 @@ module.exports = function(app, db,passwordHasher) {
 
     //Link zur Kino-infopage
     app.get("/goto_info", function (req, res) {
-        res.render("info.ejs")
+        res.render("info.ejs", {sessionUserName: req.session.userName})
     });
 
     // Redirect zur Startseite, falls keine angegeben. 
     app.get('/', function (req, res) {
-        res.redirect('/home');
+        res.redirect('/home', {sessionUserName: req.session.userName});
     });
 
     // Link zur Homepage
     app.get('/home', function (req, res) {
-        res.render("home.ejs")
+        res.render("home", {sessionUserName: req.session.userName});
     });
 
     //Link zur Login-Seite
     app.get("/goto_login", function (req, res) {
-        res.render("login.ejs", {fehlertext: ""});
+        res.render("login.ejs", {fehlertext: "", sessionUserName: req.session.userName});
     });
 
     //Link zur Registrieungsseite
     app.get("/goto_register", function (req, res) {
-        res.render("register", {fehlertext: ""});
+        res.render("register", {fehlertext: "", sessionUserName: req.session.userName});
     });
 
     // INFO LINK HIER REIN!!
@@ -60,7 +60,8 @@ module.exports = function(app, db,passwordHasher) {
             }
             res.render("program", {
                 filmtitel : aktuellesProgramm,
-                fotokennung: kennungen
+                fotokennung: kennungen,
+                sessionUserName: req.session.userName
             });
         });
     });

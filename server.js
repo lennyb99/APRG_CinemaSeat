@@ -1,7 +1,7 @@
 // Importiert das Skript mit den Hilfsfunktionen.
 const fl = require("./scripts/functionLibrary.js");
 
-// Initialisiert Module ------------------------------------------
+// Initialisiert Module -------------------------------------------------------
 // "express"
 const express = require('express');
 const app = express();
@@ -38,13 +38,13 @@ app.use(session({
 // "password-hash"
 const passwordHasher = require("password-hash");
 
-// Den Ordner Public Freigeben ----------------------------------------
+// Den Ordner Public Freigeben --------------------------------------------------
 app.use(express.static(__dirname + '/public'));
 
-// Startet den Server ------------------------------------------------
+// Startet den Server -----------------------------------------------------------
 app.listen(3000, function () {
     console.log('listening on 3000');
 });
 
-// GET/-POST-Requests, liegen im Routes-Verzeichnis ------------------------------------------------------
+// GET/-POST-Requests: liegen im Routes-Verzeichnis -----------------------------
 require('./routes')(app,db,passwordHasher);
