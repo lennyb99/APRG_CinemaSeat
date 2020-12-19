@@ -13,14 +13,16 @@ module.exports = function(app, db,passwordHasher){
                 res.render("login", {fehlertext: "Der eingegebene Benutzer existiert nicht!"});
             }
             else if (passwordHasher.verify(passwort, rows.passwort)) { //passwordHasher.verify(unhashedX, hashedY) vergleicht, ob hashedY mit unhashedX übereinstimmt.
-                res.redirect("home");
-                // Session wird erstellt TODO
+                // erstellt Session:
+                req.session.userName = rows.vorname;
+                res.render("home", {sessionUserName: req.session.userName});
             }
             else {
                 res.render("login", {fehlertext: "Das Passwort stimmt nicht!"});
             }
         });  
     });
+
 
     // Registrierung eines neuen Benutzers:
     // Wird aufgerufen, wenn auf den Registrieren-Button auf der Seite "register.html" geklickt wird.
@@ -46,8 +48,8 @@ module.exports = function(app, db,passwordHasher){
         });
     });
 
-    // Wird aufgerufen, wenn der Nutzer den "jetzt Ticket kaufen" Button auf der Seite program.ejs drückt.
 
+    // Wird aufgerufen, wenn der Nutzer den "jetzt Ticket kaufen" Button auf der Seite program.ejs drückt.
     app.post("/getMovieSelect", function(req, res){
         var kennung = req.body.kennung;
 
@@ -63,8 +65,8 @@ module.exports = function(app, db,passwordHasher){
         })  
     })
 
-    // Wird aufgerufen, wenn der Nutzer den "Zur Sitzwahl" Button drückt und leitet weiter zu seatSelect.ejs
 
+    // Wird aufgerufen, wenn der Nutzer den "Zur Sitzwahl" Button drückt und leitet weiter zu seatSelect.ejs
     app.post("/getSeatSelect", function(req,res){
         kennung = req.body.kennung
 
@@ -78,4 +80,5 @@ module.exports = function(app, db,passwordHasher){
             res.render("seatSelect",{kennung,titel});
         })  
     })
+
 };
