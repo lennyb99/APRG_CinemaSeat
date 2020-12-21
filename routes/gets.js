@@ -1,42 +1,53 @@
 module.exports = function(app, db, passwordHasher) {
 
-    //Link zur Kino-infopage
+    // Link zur Homepage mit "/" ...
+    app.get("/", function (req, res) {
+        res.redirect("/home");
+    });
+    // und mit "/home"
+    app.get("/home", function (req, res) {
+        res.render("home", {sessionVariables: req.session.sVariables});
+    });
+    
+    //Link zur "Über das Kino"-Seite
     app.get("/goto_info", function (req, res) {
-        res.render("info.ejs", {sessionUserName: req.session.userName})
+        res.render("info", {sessionVariables: req.session.sVariables})
     });
 
-    // Redirect zur Startseite, falls keine angegeben. 
-    app.get('/', function (req, res) {
-        res.redirect('/home', {sessionUserName: req.session.userName});
-    });
-
-    // Link zur Homepage
-    app.get('/home', function (req, res) {
-        res.render("home", {sessionUserName: req.session.userName});
-    });
-
-    //Link zur Login-Seite
+    // Link zur Login-Seite
     app.get("/goto_login", function (req, res) {
-        res.render("login.ejs", {fehlertext: "", sessionUserName: req.session.userName});
+        // Prüft ob man bereits eingeloggt ist. Wenn ja, kommt man zur Startseite.
+        if (req.session.sVariables) {
+            res.redirect('/home');
+        }
+        else {
+            res.render("login_and_register/login", {fehlertext: undefined, sessionVariables: req.session.sVariables});
+        }
     });
 
-    //Link zur Registrieungsseite
+    // Link zur Registrieungsseite
     app.get("/goto_register", function (req, res) {
-        res.render("register", {fehlertext: "", sessionUserName: req.session.userName});
+        // Prüft ob man bereits eingeloggt ist. Wenn ja, kommt man zur Startseite.
+        if (req.session.sVariables) {
+            res.redirect('/home');
+        }
+        else {
+            res.render("login_and_register/register", {fehlertext: undefined, sessionVariables: req.session.sVariables});
+        }
     });
 
     // INFO LINK HIER REIN!!
 
     //Link zu Erfolgreiche Anmeldung(EJS)
     app.get("/submit_login", function (req, res) {
-        res.render("account")
+        res.render("user_sites/account")
     });
 
     //Link zu Kontoeinstellungen(EJS)
     app.get("/goto_account_settings", function (req, res) {
         db.all(`SELECT * FROM benutzer;`,function(err,rows) {
             
-            res.render("account_settings", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle,sessionUserName: req.session.userName });
+            res.render("user_sites/account_settings", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle, sessionVariables: req.session.sVariables});
         });
     });
    
@@ -44,7 +55,7 @@ module.exports = function(app, db, passwordHasher) {
      app.get("/goto_user_manager", function (req, res) {
         db.all(`SELECT * FROM benutzer;`,function(err,rows) {
             
-            res.render("user_manager", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle,sessionUserName: req.session.userName });
+            res.render("admin_sites/user_manager", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle, sessionVariables: req.session.sVariables});
         });
     });
     
@@ -60,12 +71,12 @@ module.exports = function(app, db, passwordHasher) {
             res.render("program", {
                 filmtitel : aktuellesProgramm,
                 fotokennung: kennungen,
-                sessionUserName: req.session.userName
+                sessionVariables: req.session.sVariables
             });
         });
     });
 
-    //Link zur benutzerverwaltung
+    // Link zur Benutzerverwaltung
     app.get("/goto_user_manager", function (req, res) {
         db.all(`SELECT * FROM benutzer;`,function(err,rows) {
             var vornamen = []
@@ -78,10 +89,11 @@ module.exports = function(app, db, passwordHasher) {
             }
             console.log(rows)
             console.log(rows.length)
-            res.render("user_manager", {
+            res.render("admin_sites/user_manager", {
                 vornamen: vornamen, nachname: nachnamen, email: emails});
         });
         console.log(rows)
         console.log(rows.length)
     });
+
 };

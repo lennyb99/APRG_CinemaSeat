@@ -1,4 +1,4 @@
-module.exports = function(app, db,passwordHasher){
+module.exports = function(app, db, passwordHasher){
 
     // Login:
     // Wird aufgerufen, wenn auf den Login-Button auf der Seite "login.html" geklickt wird.
@@ -10,23 +10,26 @@ module.exports = function(app, db,passwordHasher){
         db.get( `SELECT * FROM benutzer WHERE email = "${email}"`, function(err, rows) {
             // Wenn diese Email nicht existiert, ist rows = undefinied.
             if (rows == undefined) {
-                res.render("login", {fehlertext: "Der eingegebene Benutzer existiert nicht!", sessionUserName: req.session.userName});
+                res.render("login_and_register/login", {fehlertext: "Benutzer existiert nicht!", sessionVariables: undefined});
             }
             else if (passwordHasher.verify(passwort, rows.passwort)) { //passwordHasher.verify(unhashedX, hashedY) vergleicht, ob hashedY mit unhashedX übereinstimmt.
-                // erstellt Session:
+                // erstellt Session(-variablen): (siehe Kommentar in navbar.ejs)
                 req.session.userName = rows.vorname;
-                console.log(rows.vorname)
-                res.render("home", {sessionUserName: req.session.userName});
-                
+                req.session.userMail = rows.email;
+                req.session.sVariables = {
+                    userName: rows.vorname,
+                    userMail: rows.email
+                }
+                res.redirect("home");
             }
             else {
-                res.render("login", {fehlertext: "Das Passwort stimmt nicht!",sessionUserName: req.session.userName});
+                res.render("login_and_register/login", {fehlertext: "Passwort stimmt nicht!", sessionVariables: undefined});
             }
         });  
     });
+    
 
-
-    // Registrierung eines neuen Benutzers:
+    // Registrierung:
     // Wird aufgerufen, wenn auf den Registrieren-Button auf der Seite "register.html" geklickt wird.
     app.post("/oncreate", function (req, res) {
         const email = req.body.email;
@@ -38,7 +41,7 @@ module.exports = function(app, db,passwordHasher){
         // neu gerendert und diese ganze "oncreate"-Funktion wird abgebrochen.
         db.get( `SELECT email FROM benutzer WHERE email = "${email}"`, function(err, rows) {
             if (rows != undefined) {
-                res.render("register", {fehlertext: "Diese Email ist bereits vergeben!"});
+                res.render("login_and_register/register", {fehlertext: "Email bereits vergeben!", sessionVariables: undefined});
                 return;
             }
         });
@@ -46,7 +49,7 @@ module.exports = function(app, db,passwordHasher){
                                                                                                                             // Fügt das gehashte Passwort in die DB ein!!!
         db.run( `INSERT INTO benutzer(email,vorname,nachname,passwort,rolle) VALUES ("${email}","${vorname}","${nachname}","${passwordHasher.generate(passwort)}", "user")`, 
             function(err, rows) {
-                res.render("login", {fehlertext: "Erfolgreich registriert!"});
+                res.render("login_and_register/login", {fehlertext: "Erfolgreich registriert!", sessionVariables: undefined});
         });
     });
 
@@ -63,7 +66,7 @@ module.exports = function(app, db,passwordHasher){
             trailer = rows.trailer
             
             
-            res.render("movieSelect",{titel, beschreibung, preis, trailer,kennung, sessionUserName: req.session.userName});
+            res.render("movieSelect",{titel, beschreibung, preis, trailer,kennung, sessionVariables: req.session.sVariables});
         })  
     })
 
@@ -79,7 +82,7 @@ module.exports = function(app, db,passwordHasher){
             preis = rows.eintrittspreis
             trailer = rows.trailer
     
-            res.render("seatSelect",{kennung,titel, sessionUserName: req.session.userName});
+            res.render("seatSelect", {kennung, titel, sessionVariables: req.session.sVariables});
         })  
     })
 

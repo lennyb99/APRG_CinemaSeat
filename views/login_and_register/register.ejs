@@ -4,12 +4,10 @@
         <base href="/">               
         <link type="text/css" rel="stylesheet" href="style.css" />
         <title> Registrierung</title>
-        <%- include('navbar')%>
-</head>
-        
-       
-
+        <%- include('../navbar')%>
+    </head>
     <body>
+
         <form action="/oncreate" method="POST">
             Vorname: <br>
             <input type="text" name="vorname" required> <br>
@@ -28,6 +26,4 @@
 
         <h2> <%= fehlertext %> </h2>
     </body>
-
-
 </html>
