@@ -46,5 +46,5 @@ app.listen(3000, function () {
     console.log('listening on 3000');
 });
 
-// GET/-POST-Requests: liegen im Routes-Verzeichnis -----------------------------
+// GET/-POST-Requests liegen im Routes-Ordner -----------------------------------
 require('./routes')(app,db,passwordHasher);

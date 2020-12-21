@@ -1,4 +1,4 @@
-module.exports = function(app, db,passwordHasher) {
+module.exports = function(app, db, passwordHasher) {
 
     //Link zur Kino-infopage
     app.get("/goto_info", function (req, res) {
@@ -40,15 +40,14 @@ module.exports = function(app, db,passwordHasher) {
         });
     });
    
-     //Link zur Benutzerverwaltung(Admin Only)
+     //Link zur Benutzerverwaltung (Admin Only)
      app.get("/goto_user_manager", function (req, res) {
         db.all(`SELECT * FROM benutzer;`,function(err,rows) {
             
             res.render("user_manager", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle,sessionUserName: req.session.userName });
+        });
     });
-});
     
-
     //Link zur Film-Detailansicht
     app.get("/goto_program", function (req, res) {
         db.all(`SELECT * FROM filmprogramm;`,function(err,rows) {
@@ -85,4 +84,4 @@ module.exports = function(app, db,passwordHasher) {
         console.log(rows)
         console.log(rows.length)
     });
-}
+};
