@@ -24,13 +24,7 @@ module.exports = function(app, db, passwordHasher) {
             res.render("login_and_register/login", {fehlertext: undefined, sessionVariables: req.session.sVariables});
         }
     });
-    //Link zum Logout
-    app.get("/goto_logout", function (req, res){
-         req.session.sVariables = undefined;
-        res.render("home", {fehlertext: "Erfolgreich abgemeldet", sessionVariables: req.session.sVariables});
 
-
-    });
     // Link zur Registrieungsseite
     app.get("/goto_register", function (req, res) {
         // Prüft ob man bereits eingeloggt ist. Wenn ja, kommt man zur Startseite.
@@ -42,20 +36,21 @@ module.exports = function(app, db, passwordHasher) {
         }
     });
 
-    // INFO LINK HIER REIN!!
 
     //Link zu Erfolgreiche Anmeldung(EJS)
     app.get("/submit_login", function (req, res) {
         res.render("user_sites/account")
     });
 
-    //Link zu Kontoeinstellungen(EJS)
-    app.get("/goto_account_settings", function (req, res) {
-        db.all(`SELECT * FROM benutzer;`,function(err,rows) {
-            
-            //res.render("user_sites/account_settings", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle, sessionVariables: req.session.sVariables});
+    //Link zum Logout
+    app.get("/goto_logout", function (req, res){
+        req.session.sVariables = undefined;
+       res.render("home", {fehlertext: "Erfolgreich abgemeldet", sessionVariables: req.session.sVariables});
+   });
+
+    //Link zu Kontoeinstellungen
+    app.get("/goto_account_settings", function (req, res) {       
             res.render("user_sites/account_settings", {sessionVariables: req.session.sVariables});
-        });
     });
    
      //Link zur Benutzerverwaltung (Admin Only)
@@ -66,6 +61,15 @@ module.exports = function(app, db, passwordHasher) {
         });
     });
     
+    //Link zu Account Löschen 
+    app.get("/goto_delete_account", function (req, res) {   
+        db.run(`DELETE FROM benutzer WHERE email = "${req.session.sVariables.userEmail}";`,function(err,rows) {
+            req.session.sVariables = undefined;
+            res.render("home", {fehlertext: "Das Benutzerkonto wurde erfolgreich gelöscht.", sessionVariables: req.session.sVariables}); 
+        });
+    });
+
+
     //Link zur Film-Detailansicht
     app.get("/goto_program", function (req, res) {
         db.all(`SELECT * FROM filmprogramm;`,function(err,rows) {
