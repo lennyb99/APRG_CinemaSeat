@@ -23,7 +23,8 @@ CREATE TABLE filmprogramm (
     beschreibung TEXT NOT NULL,
     kennung TEXT NOT NULL,
     trailer TEXT NOT NULL,
-    eintrittspreis NUMERIC
+    eintrittspreis NUMERIC,
+    saalsitze TEXT NOT NULL
 );
 
 /* Tabelle für Statistiken */
@@ -33,7 +34,8 @@ INSERT INTO benutzer (email,vorname,nachname,passwort,rolle) VALUES ("Administra
 
 
 /* Einfügen von Filmen */
-INSERT INTO filmprogramm (filmtitel, beschreibung, eintrittspreis, kennung, trailer) VALUES ("James Bond: Ein neuer Auftrag","ein neuer Auftrag für James Bond", 12.99, "jamesbondeinneuerauftrag","https://www.youtube.com/embed/k8NyWrd5CJI");
-INSERT INTO filmprogramm (filmtitel, beschreibung, eintrittspreis, kennung, trailer) VALUES ("Star Wars: Episode 10", "Der 10. Teil der Star Wars Saga", 14.99,"starwarsepisode10","https://www.youtube.com/embed/IdyXKJ8NcNI");
-INSERT INTO filmprogramm (filmtitel, beschreibung, eintrittspreis, kennung, trailer) VALUES ("2020 The Movie", "coronananananana", 13.37,"2020themovie","https://www.youtube.com/embed/DN0gAQQ7FAQ");
-INSERT INTO filmprogramm (filmtitel, beschreibung, eintrittspreis, kennung, trailer) VALUES ("Marvel's The Avengers", "2/10", 1.99,"marvelstheavengers","https://www.youtube.com/embed/edoxdRs6haA");
+/* Saal mit leeren Sitzen = "000010020100110120200210220" */
+INSERT INTO filmprogramm (filmtitel, beschreibung, eintrittspreis, kennung, trailer,saalsitze) VALUES ("James Bond: Ein neuer Auftrag","ein neuer Auftrag für James Bond", 12.99, "jamesbondeinneuerauftrag","https://www.youtube.com/embed/k8NyWrd5CJI","000010020100110120200210220");
+INSERT INTO filmprogramm (filmtitel, beschreibung, eintrittspreis, kennung, trailer,saalsitze) VALUES ("Star Wars: Episode 10", "Der 10. Teil der Star Wars Saga", 14.99,"starwarsepisode10","https://www.youtube.com/embed/IdyXKJ8NcNI","000010020100110120200210220");
+INSERT INTO filmprogramm (filmtitel, beschreibung, eintrittspreis, kennung, trailer,saalsitze) VALUES ("2020 The Movie", "coronananananana", 13.37,"2020themovie","https://www.youtube.com/embed/DN0gAQQ7FAQ","000010020100110120200210220");
+INSERT INTO filmprogramm (filmtitel, beschreibung, eintrittspreis, kennung, trailer,saalsitze) VALUES ("Marvel's The Avengers", "2/10", 1.99,"marvelstheavengers","https://www.youtube.com/embed/edoxdRs6haA","000010020100110120200210220");

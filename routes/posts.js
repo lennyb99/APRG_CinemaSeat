@@ -86,4 +86,67 @@ module.exports = function(app, db, passwordHasher){
         })  
     })
 
+    app.post("/getBuyConfirm", function(req, res){
+
+        sitzplatz = req.body.sitzplatz
+        db.get(`SELECT * FROM filmprogramm WHERE kennung = "${kennung}";`,function(err,rows){
+            
+            filmtitel = rows.filmtitel
+            
+            // Saalsitze auslesen
+            var seatsDb = rows.saalsitze
+            // Saalsitze in Array
+            var seats = stringToArraySeats(seatsDb);
+            // Sitzplatz wird besetzt
+            seats[sitzplatz[0]-1][sitzplatz[1]-1] = (1).toString()
+            // Saalsitze in String
+            seatsDbUpdated = arrayToStringSeats(seats)
+
+            db.run(`UPDATE filmprogramm SET saalsitze = "${seatsDbUpdated}" WHERE kennung = "${kennung}";`, function(err){
+                if(err){
+                    console.log(err)
+                    
+                }
+                console.log("updated!")
+            })
+
+            res.render("buyConfirm",{kennung,sitzplatz,filmtitel,sessionVariables: req.session.sVariables})
+        });
+    })
+
+
+
+
+    /* Ändert das Array der Saalsitze in Stringformat, um in die Datenbank zu schicken */
+    function arrayToStringSeats(seats){
+        var seatsString = ""
+
+        for (var i = 0; i < 3;i++){
+            for (var j = 0; j < 3; j++){
+                seatsString += i.toString() + j.toString() + seats[i][j].toString();
+            }
+        }
+
+        return seatsString.toString()
+    }
+
+
+    /* Ändert den String aus der Datenbank in ein Array, um Zugriff und Lesbarkeit zu erleichtern*/
+    function stringToArraySeats(seats){
+        seatsArray = [
+            [0,0,0],
+            [0,0,0],
+            [0,0,0]
+        ];
+        count = 0;
+
+        for (var j = 0; j < 9; j++){
+            seatsArray[seats[count]][seats[count+1]] = seats[count+2]
+            count += 3
+        }
+
+        return seatsArray
+    }
+
+
 };
