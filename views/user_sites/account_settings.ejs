@@ -13,16 +13,16 @@
         <h1>Benutzerkonto</h1>
         <h2>
             <p></p>
-            Vorname: <%=vorname%>
+            Vorname: <%=sessionVariables.userName%>
             <p></p>
-            Nachname: <%=nachname%>
+            Nachname: <%=sessionVariables.userLastname%>
             <p></p>
-            Email: <%=email%> 
+            Email: <%=sessionVariables.userEmail%> 
             <p></p>
             </p>
         </h2>
         <h2>
-            <% switch (rolle) {
+            <% switch (sessionVariables.role) {
                 case 'admin' : %>
                 <a href="/goto_user_manager" class="button">Benutzerverwaltung</a>
                 <a href="/goto_account_settings" class="button">Kontodaten ändern</a>

@@ -2,11 +2,11 @@ module.exports = function(app, db, passwordHasher) {
 
     // Link zur Homepage mit "/" ...
     app.get("/", function (req, res) {
-        res.redirect("/home");
+        res.redirect("/home"), {fehlertext: undefined};
     });
     // und mit "/home"
     app.get("/home", function (req, res) {
-        res.render("home", {sessionVariables: req.session.sVariables});
+        res.render("home", {sessionVariables: req.session.sVariables, fehlertext: undefined});
     });
     
     //Link zur "Über das Kino"-Seite
@@ -18,18 +18,24 @@ module.exports = function(app, db, passwordHasher) {
     app.get("/goto_login", function (req, res) {
         // Prüft ob man bereits eingeloggt ist. Wenn ja, kommt man zur Startseite.
         if (req.session.sVariables) {
-            res.redirect('/home');
+            res.redirect('/home'),{fehlertext: undefined};
         }
         else {
             res.render("login_and_register/login", {fehlertext: undefined, sessionVariables: req.session.sVariables});
         }
     });
+    //Link zum Logout
+    app.get("/goto_logout", function (req, res){
+         req.session.sVariables = undefined;
+        res.render("home", {fehlertext: "Erfolgreich abgemeldet", sessionVariables: req.session.sVariables});
 
+
+    });
     // Link zur Registrieungsseite
     app.get("/goto_register", function (req, res) {
         // Prüft ob man bereits eingeloggt ist. Wenn ja, kommt man zur Startseite.
         if (req.session.sVariables) {
-            res.redirect('/home');
+            res.redirect('/home'),{fehlertext: undefined};
         }
         else {
             res.render("login_and_register/register", {fehlertext: undefined, sessionVariables: req.session.sVariables});
@@ -47,7 +53,8 @@ module.exports = function(app, db, passwordHasher) {
     app.get("/goto_account_settings", function (req, res) {
         db.all(`SELECT * FROM benutzer;`,function(err,rows) {
             
-            res.render("user_sites/account_settings", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle, sessionVariables: req.session.sVariables});
+            //res.render("user_sites/account_settings", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle, sessionVariables: req.session.sVariables});
+            res.render("user_sites/account_settings", {sessionVariables: req.session.sVariables});
         });
     });
    

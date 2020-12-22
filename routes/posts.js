@@ -11,14 +11,18 @@ module.exports = function(app, db, passwordHasher){
             // Wenn diese Email nicht existiert, ist rows = undefinied.
             if (rows == undefined) {
                 res.render("login_and_register/login", {fehlertext: "Benutzer existiert nicht!", sessionVariables: undefined});
-            }
+            }     
             else if (passwordHasher.verify(passwort, rows.passwort)) { //passwordHasher.verify(unhashedX, hashedY) vergleicht, ob hashedY mit unhashedX übereinstimmt.
                 // erstellt Session(-variablen): (siehe Kommentar in navbar.ejs)
                 req.session.userName = rows.vorname;
                 req.session.userMail = rows.email;
+                req.session.userLastname = rows.nachname;
+                req.session.role = rows.rolle;
                 req.session.sVariables = {
                     userName: rows.vorname,
-                    userMail: rows.email
+                    userEmail: rows.email,
+                    userLastname: rows.nachname,
+                    role: rows.rolle
                 }
                 res.redirect("home");
             }
