@@ -48,10 +48,10 @@ module.exports = function(app, db, passwordHasher) {
        res.render("home", {fehlertext: "Erfolgreich abgemeldet", sessionVariables: req.session.sVariables});
    });
 
-    //Link zu Kontoeinstellungen
-    app.get("/goto_account_settings", function (req, res) {       
-            res.render("user_sites/account_settings", {sessionVariables: req.session.sVariables});
-    });
+     //Link zu Kontoeinstellungen
+    app.get("/goto_account_settings", function (req, res) {        
+            res.render("user_sites/account_settings", {sessionVariables: req.session.sVariables}); 
+    }); 
    
      //Link zur Benutzerverwaltung (Admin Only)
      app.get("/goto_user_manager", function (req, res) {
