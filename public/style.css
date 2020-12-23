@@ -20,7 +20,7 @@ html {
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    background: #3AAFA9;
+    background: #102A37;
   }
   
   nav ul {
@@ -34,27 +34,32 @@ html {
   #nav {
     width: 100%;
     margin: 0 auto;
-    background: #2B7A78;
+    background: #90040B;
     color: #f0f0f0;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.267);
   }
   #nav a {
     display: block;
     padding: 0 50px;
     line-height: inherit;
     cursor: pointer;
+    
   }
   #nav__menu {
     line-height: 50px;
     font-weight: 500;
     width: fit-content (20%);
     text-transform: uppercase;
+    
   }
   #nav__menu-item {
     display: inline-block;
     position: static;
   }
   #nav__menu-item:hover {
-    background-color: #db9647;
+    box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.267);
+    background-color: #90040B;
+    color: white;
 
   }
   #nav__menu-item:hover #nav__submenu {
@@ -68,9 +73,11 @@ html {
     width: fit-content (5%);
     background-color: #184443;
     z-index: 100;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.267);
   }
   #nav__submenu-item:hover {
-    background: rgba(197, 197, 197, 0.39);
+    background: #184443;
+    box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.267);
   }
   
   
@@ -80,7 +87,7 @@ html {
       display: inline;
       float: left;
       size: 10px;
-      background-color: rgb(140, 84, 167);
+      background-color: #90040B;
       border:200px;
       color: white;
       margin-top: 10%;
@@ -90,6 +97,9 @@ html {
       line-height: 50px;
       font-weight: 200;
 
+  }
+  .button:hover{
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.267);
   }
 
   p{
@@ -103,21 +113,21 @@ form{
 }
 .movie_prev{
   position: relative;
-  padding: 20px;
+  padding: 10px;
   padding-bottom: 100px;
   text-align: center;
   color: white;
   font-size: 20px;
   font-weight: 500;
   border-radius: 5px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.322);
+  box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.322);
   margin: 20px;
-  width: 500px;
+  width: 400px;
 
   height: available;
-  min-height: 700px;
+  min-height: 640px;
   float: left;
-  background-color: #db9647;
+  background-color: #102A37;
   border-collapse: collapse;
 
 }
@@ -129,7 +139,7 @@ form{
   border-radius: 5px;
   display: inline;
   size: 10px;
-  background-color: #2B7A78;
+  background-color: #90040B;
   border:200px;
   color: white;
   padding: 5px 5px;
@@ -154,7 +164,7 @@ h1 {
 h2 {
     width: auto;
     margin: 5px auto 20px;
-    color: #db9647;
+    color: #8F0812;
     text-align: center;
 
 }
@@ -170,7 +180,7 @@ h3 {
 h4 {
     width: 500px;
     margin: 5px auto 20px;
-    color: #db9647;
+    color: #8F0812;
     font-weight: 400;
     text-align: center;
 
