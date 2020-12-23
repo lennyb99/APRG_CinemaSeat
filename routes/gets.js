@@ -56,8 +56,14 @@ module.exports = function(app, db, passwordHasher) {
      //Link zur Benutzerverwaltung (Admin Only)
      app.get("/goto_user_manager", function (req, res) {
         db.all(`SELECT * FROM benutzer;`,function(err,rows) {
-            
-            res.render("admin_sites/user_manager", { "vorname": rows[0].vorname, "nachname": rows[0].nachname, "email": rows[0].email, "rolle": rows[0].rolle, sessionVariables: req.session.sVariables});
+            var allUsers  =[]
+            // Aus der DB werden alle Benutzer als "rows" ausgelesen und im array allUsers gespeichert
+            for (var i = 0; i < rows.length; i++){
+                allUsers.push(rows[i])
+            }
+            console.log(allUsers)
+            //Das Array wird an user_manager übergeben und dort wieder ausgelesen (siehe user_manager)
+            res.render("admin_sites/user_manager", { fehlertext: undefined, allUsers: allUsers, sessionVariables: req.session.sVariables});
         });
     });
     
@@ -69,6 +75,12 @@ module.exports = function(app, db, passwordHasher) {
         });
     });
 
+    //Link zu Account Löschen 
+    app.get("/goto_add_user", function (req, res) {   
+    
+            res.render("admin_sites/add_user", {fehlertext: undefined, sessionVariables: req.session.sVariables}); 
+
+    });
 
     //Link zur Film-Detailansicht
     app.get("/goto_program", function (req, res) {
@@ -85,26 +97,6 @@ module.exports = function(app, db, passwordHasher) {
                 sessionVariables: req.session.sVariables
             });
         });
-    });
-
-    // Link zur Benutzerverwaltung
-    app.get("/goto_user_manager", function (req, res) {
-        db.all(`SELECT * FROM benutzer;`,function(err,rows) {
-            var vornamen = []
-            var nachnamen = []
-            var emails = []
-            for(var i = 0; i < rows.length; i++){
-                vornamen.push(rows[i].vorname)
-                nachnamen.push(rows[i].nachname)
-                emails.push(rows[i].email)
-            }
-            console.log(rows)
-            console.log(rows.length)
-            res.render("admin_sites/user_manager", {
-                vornamen: vornamen, nachname: nachnamen, email: emails});
-        });
-        console.log(rows)
-        console.log(rows.length)
     });
 
 };
