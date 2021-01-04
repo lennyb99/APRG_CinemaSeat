@@ -57,13 +57,55 @@ module.exports = function(app, db, passwordHasher){
         });
     });
 
+    // Wird aufgerufen, wenn über das Admin-Panel ein neuer Benutzer hinzugefügt wird
+    app.post("/oncreate_admin", function (req, res) {
+        const email = req.body.email;
+        const passwort = req.body.passwort;
+        const vorname = req.body.vorname;
+        const nachname = req.body.nachname;
+    
+        // Holt den Benutzer mit der übergebenen "email" aus der DB und prüft, ob er bereits exisitert. Wenn ja, dann wird "register.ejs" mit einer Fehlermeldung
+        // neu gerendert und diese ganze "oncreate"-Funktion wird abgebrochen.
+        db.get( `SELECT email FROM benutzer WHERE email = "${email}"`, function(err, rows) {
+            if (rows != undefined) {
+                res.render("admin_sites/add_user", {fehlertext: "Email bereits vergeben!", sessionVariables: req.session.sVariables});
+                return;
+            }
+        });
+        
+                                                                                                                            // Fügt das gehashte Passwort in die DB ein!!!
+        db.run( `INSERT INTO benutzer(email,vorname,nachname,passwort,rolle) VALUES ("${email}","${vorname}","${nachname}","${passwordHasher.generate(passwort)}", "user")`, 
+            function(err, rows) {
+                
+        });
 
+        //Weil nach dem hinzufügen des Benutzers wieser user_manager aufgerufen wird, muss auch allUsers neu übergeben werden
+        db.all(`SELECT * FROM benutzer;`,function(err,rows) {
+            var allUsers  =[]
+            // Aus der DB werden alle Benutzer als "rows" ausgelesen und im array allUsers gespeichert
+            for (var i = 0; i < rows.length; i++){
+                allUsers.push(rows[i])
+            }
+            console.log(allUsers)
+            //Das Array wird an user_manager übergeben und dort wieder ausgelesen (siehe user_manager)
+            res.render("admin_sites/user_manager", {allUsers: allUsers,fehlertext: "Erfolgreich registriert!", sessionVariables: req.session.sVariables});
+        });
+    });
+
+    //Benutzer Löschen aus dem Admin-Panel heraus
+      app.post("/goto_delete_account_admin", function (req, res) {  
+          var delete_user = req.body.delete_user;
+        db.run(`DELETE FROM benutzer WHERE email = "${delete_user}";`,function(err,rows) {
+            res.render("home", {fehlertext: "Das Benutzerkonto wurde erfolgreich gelöscht.", sessionVariables: req.session.sVariables}); 
+        });
+    });
+    
     // Wird aufgerufen, wenn der Nutzer den "jetzt Ticket kaufen" Button auf der Seite program.ejs drückt.
     app.post("/getMovieSelect", function(req, res){
         var kennung = req.body.kennung;
-
+    console.log(kennung);
         db.get(`SELECT * FROM filmprogramm WHERE kennung = "${kennung}";`,function(err,rows){
-            
+         
             titel = rows.filmtitel
             beschreibung = rows.beschreibung
             preis = rows.eintrittspreis

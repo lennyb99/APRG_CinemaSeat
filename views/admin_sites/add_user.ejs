@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <base href="/">               
+        <link type="text/css" rel="stylesheet" href="style.css" />
+        <title> Registrierung</title>
+        <%- include('../navbar')%>
+    </head>
+    <body>
+
+        <form action="/oncreate_admin" method="POST">
+            Vorname: <br>
+            <input type="text" name="vorname" required> <br>
+            <p></p>
+            Nachname: <br>
+            <input type="text" name="nachname" required> <br>
+            <p></p>
+            Email Adresse: <br>
+            <input type="email" name="email" required> <br>
+            <p></p>
+            Passwort Festlegen: <br>
+            <input type="password" name="passwort" required> 
+            <p></p>
+            <button type="submit"> Neues Konto anlegen</button>
+        </form>
+
+        <h2> <%= fehlertext %> </h2>
+    </body>
+</html>
