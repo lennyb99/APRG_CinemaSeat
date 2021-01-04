@@ -91,6 +91,16 @@ module.exports = function(app, db, passwordHasher){
             res.render("admin_sites/user_manager", {allUsers: allUsers,fehlertext: "Erfolgreich registriert!", sessionVariables: req.session.sVariables});
         });
     });
+    //Kontodaten verändern Admin + regular User
+    app.post("/goto_edit_account", function (req, res){
+        var edit_user = req.body.edit_user;
+        db.run(`SELECT FROM benutzer WHERE email = "${edit_user}"; `, function(err,rows){
+            res.render("user_sites/edit_account", {fehlertext: " ", sessionVariables: req.session.sVariables});
+
+        });
+
+    });
+
 
     //Benutzer Löschen aus dem Admin-Panel heraus
       app.post("/goto_delete_account_admin", function (req, res) {  
