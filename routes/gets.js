@@ -99,13 +99,16 @@ module.exports = function(app, db, passwordHasher) {
         db.all(`SELECT * FROM filmprogramm;`,function(err,rows) {
             var aktuellesProgramm = []
             var kennungen = []
+            var fotourl = []
             for(var i = 0; i < rows.length; i++){
                 aktuellesProgramm.push(rows[i].filmtitel)
                 kennungen.push(rows[i].kennung)
+                fotourl.push(rows[i].fotourl)
             }
             res.render("program", {
                 filmtitel : aktuellesProgramm,
                 fotokennung: kennungen,
+                fotourl: fotourl,
                 sessionVariables: req.session.sVariables
             });
         });
