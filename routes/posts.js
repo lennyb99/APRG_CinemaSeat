@@ -132,6 +132,14 @@ module.exports = function(app, db, passwordHasher){
         })  
     })
 
+    //Link zur Filmprogrammverwaltung
+    app.post("/addMovie", function(req, res){
+        allUsers = res.allUsers;
+        
+        
+        res.render("admin_sites/movie_manager", { fehlertext: undefined, allUsers: allUsers, sessionVariables: req.session.sVariables})
+    })
+
     app.post("/getBuyConfirm", function(req, res){
 
         sitzplatz = req.body.sitzplatz

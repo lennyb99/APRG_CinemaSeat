@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+        <head> 
+                <base href="/">               
+                <link type="text/css" rel="stylesheet" href="style.css" />
+                <title> CinemaSeat Startseite</title>
+            <%- include('../navbar')%> 
+        </head>
+        
+    
+            
+            <form action="/addMovie" method="POST">
+                Filmtitel: <input type="text" name="filmtitel"> <br>
+                Filmbeschreibung: <input type="text" name="beschreibung"> <br>
+                Eintrittspreis: <input type="text" name="eintrittspreis"> <br>
+                Kennung: <input type="text" name="kennung"> <br>
+                Link zum Trailer(Youtube): <input type="text" name="trailer"> <br>
+                <button type="submit">Film hinzufügen</button>
+            </form>
+               
+        
+
+
+
+</html>
