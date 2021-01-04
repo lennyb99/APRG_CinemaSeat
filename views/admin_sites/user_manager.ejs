@@ -6,9 +6,24 @@
                 <title> CinemaSeat Startseite</title>
             <%- include('../navbar')%> 
         </head>
-        
-        <table  border ="0">
-                <% for(var i = 0; i < allUsers.length; i++) { %>
+        <div class=""></div>
+        <table cellpadding="0" cellspacing="0" border ="0">
+            <thead>
+                <tr>
+                  <th>Vorname</th>
+                  <th>Nachname</th>
+                  <th>E-Mail</th>
+                  <th> </th>
+                </tr>
+              </thead>
+            </table>
+        </div>
+
+                <div class="tbl_content">
+                    <% for(var i = 0; i < allUsers.length; i++) { %>
+                <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+
                 <tr>
                     <td><%= allUsers[i].vorname%></td> 
                     <td><%= allUsers[i].nachname %></td> 
@@ -16,11 +31,16 @@
                     <td><a href="/goto_delete_account" class="button">Bearbeiten</a></td>
                     <td><form action="/goto_delete_account_admin" method="POST"> <button type="submit" name="delete_user" value=<%= allUsers[i].email %> class="button">  Löschen</button></form></div> </td>
                 </tr>
+            </tbody>   
+        </table> 
+        </div>
+    </section>
     
     
                 <% } %>
     
             </table>
+        </div>
             <h2> <%= fehlertext %> </h2>
             <a href="/goto_add_user" class="button">Benutzer Hinzufügen</a>
 
