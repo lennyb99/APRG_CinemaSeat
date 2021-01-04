@@ -69,14 +69,14 @@ module.exports = function(app, db, passwordHasher) {
 
     //Link zur Filmprogrammverwaltung
     app.get("/getmovie_manager", function(req, res){
-        db.all(`SELECT * FROM filmprogramm WHERE id=1;`, function(err,rows){
+        db.all(`SELECT * FROM filmprogramm;`, function(err,rows){
             allUsers = res.allUsers;
-            
-            console.log(rows.kennung)
-
-            res.render("admin_sites/movie_manager", { fehlertext: undefined, allUsers: allUsers, sessionVariables: req.session.sVariables})
-        })
-        
+            allMovies = []
+            for(i=0; i<rows.length;i++){
+                allMovies.push(rows[i])
+            }   
+            res.render("admin_sites/movie_manager", { fehlertext: undefined,allMovies: allMovies, allUsers: allUsers, sessionVariables: req.session.sVariables})
+        }) 
     })
     
     //Link zu Account Löschen 
@@ -110,5 +110,4 @@ module.exports = function(app, db, passwordHasher) {
             });
         });
     });
-
 };

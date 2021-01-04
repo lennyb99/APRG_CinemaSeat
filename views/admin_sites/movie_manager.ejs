@@ -8,7 +8,7 @@
         </head>
         
     
-            
+        <body>  
             <form action="/addMovie" method="POST">
                 Filmtitel: <input type="text" name="filmtitel"> <br>
                 Filmbeschreibung: <input type="text" name="beschreibung"> <br>
@@ -17,9 +17,47 @@
                 Link zum Trailer(Youtube): <input type="text" name="trailer"> <br>
                 <button type="submit">Film hinzufügen</button>
             </form>
-               
-        
+
+            <div class=""></div>
+        <table cellpadding="0" cellspacing="0" border ="0">
+            <thead>
+                <tr>
+                  <th>filmtitel</th>
+                  <th>beschreibung</th>
+                  <th>eintrittspreis</th>
+                  <th>kennung</th>
+                  <th>trailer</th>
+                  <th> </th>
+                </tr>
+              </thead>
+            </table>
+        </div>
+
+                
+        <div class="tbl_content">
+            <% for(var i = 0; i < allMovies.length; i++) { %>
+        <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+
+        <tr>
+            <td><%= allMovies[i].filmtitel%></td> 
+            <td><%= allMovies[i].beschreibung %></td> 
+            <td><%= allMovies[i].eintrittspreis   %></td>
+            <td><%= allMovies[i].kennung   %></td>
+            <td><%= allMovies[i].trailer   %></td>
+            <td><form action="/goto_edit_movie" method="POST"> <button type="submit" name="edit_movie" value= <%= allMovies[i].kennung %> class="button">  Bearbeiten</button></form></div> </td>
+            <td><form action="/goto_delete_movie" method="POST"> <button type="submit" name="delete_movie" value= <%= allMovies[i].kennung %> class="button">  Löschen</button></form></div> </td>
+           
+        </tr>
+        </tbody>   
+    </table> 
+</div>
+</section>
 
 
+        <% } %>
 
+    </table>
+</div>
+</body>
 </html>
