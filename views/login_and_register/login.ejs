@@ -9,13 +9,25 @@
     <body>
         <h1>Bitte Einloggen</h1>
 
-        <form action="/submit_login" method="POST">
-            <label for="fname" >Email</label>
-            <input type="email" name="email"required><br><br>
-            <label for="lname" class="form__label">Passwort</label>
-            <input type="password" name="passwort" required><br><br>
-            <input type="submit" value="Einloggen">
+
+        <div class="box">
+            <form action="/submit_login" method="POST">
+            <div class="input-container">
+                <label for="Email"></label> <br>
+                <input type="email" name="email" placeholder="Email"required >
+            </div>
+            <div class="input-container">
+            <label for="Passwort"></label> <br>
+            <input type="password" name="passwort" placeholder="Passwort" required>
+            </div>
+            
+           <button type="submit" class="form_button"> Login</button>
         </form>
+        </div>
+
+
+
+        
         
         <form action="/goto_register">
         </form>
