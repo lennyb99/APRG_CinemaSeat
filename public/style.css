@@ -154,9 +154,9 @@ html {
   size: 10px;
   background-color: #90040B;
   border:250px;
-  margin-bottom: 10%;
+  padding-left: 40px;
+  padding-right: 40px;
   color: white;
-  margin-right: 10%; 
   text-decoration: none;
   line-height: 50px;
   font-weight: 200;
@@ -240,7 +240,7 @@ td{
 .input-container input:focus{ 
  border:none;	
  outline:none;
- border-bottom:1px solid #e74c3c;	
+ border-bottom:1px solid #24ffbd;	
 }
 .btn{
   color:#fff;
