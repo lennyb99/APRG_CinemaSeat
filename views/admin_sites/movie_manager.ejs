@@ -8,16 +8,38 @@
         </head>
         
     
-        <body>  
-            <form action="/addMovie" method="POST">
-                Filmtitel: <input type="text" name="filmtitel"> <br>
-                Filmbeschreibung: <input type="text" name="beschreibung"> <br>
-                Eintrittspreis: <input type="text" name="eintrittspreis"> <br>
-                Kennung: <input type="text" name="kennung"> <br>
-                Link zum Trailer(Youtube): <input type="text" name="trailer"> <br>
-                Link zum Fotobanner: <input type="text" name="fotourl"> <br>
-                <button type="submit">Film hinzufügen</button>
-            </form>
+        <body> 
+            <div class="box">
+                <form action="/addMovie" method="POST">
+                <div class="input-container">
+                    <label for="Filmtitel">Filmtitel</label> <br>
+                    <input type="text" name="filmtitel"> 		
+                </div>
+                <div class="input-container">		
+                    <label for="Filmbeschreibung">Filmbeschreibung</label> <br>
+                <input type="text" name="Filmbeschreibung" >
+                </div>
+                <div class="input-container">
+                    <label for="Eintrittspreis">Eintrittspreis</label> <br>
+                    <input type="text" name="eintrittspreis">
+                </div>
+                <div class="input-container">
+                <label for="Kennung">Kennung</label> <br>
+                <input type="text" name="kennung" >
+                </div>
+                <div class="input-container">
+                    <label for="trailer">Link zum Trailer(Youtube):</label> <br>
+                    <input type="text" name="trailer">
+                </div>
+                <div class="input-container">
+                    <label for="banner">  Link zum Fotobanner</label> <br>
+                    <input type="text" name="fotourl">
+                </div>
+    
+                <button type="submit" class="button"> Film hinzufügen</button>
+            </form>	
+            </div>
+
 
             <div class=""></div>
         <table cellpadding="0" cellspacing="0" border ="0">
