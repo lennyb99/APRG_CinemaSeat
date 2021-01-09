@@ -25,13 +25,13 @@
             <% switch (sessionVariables.role) {
                 case 'admin' : %>
                 <a href="/goto_user_manager" class="button">Benutzerverwaltung</a>
-                <a href="/goto_edit_account" class="button">Kontodaten ändern</a>
+                <form action="/goto_edit_account" method="POST"> <a class="button">  <button class="button" type="submit" name="edit_user" value= <%= sessionVariables.userEmail %> > Kontodaten ändern</button> </form>  
                 <a href="/goto_delete_account" class="button">Konto Löschen</a>
                 <a href="/getmovie_manager" class="button">Filmprogramm bearbeiten</a>
                         <% break;
                 
                 case 'user' : %>
-                <form action="/goto_edit_account" method="POST"> <a class="button">  <button  class="button" type="submit" name="edit_user" value= <%= sessionVariables.userEmail %> > Bearbeiten</button> </form>  
+                <form action="/goto_edit_account" method="POST"> <button class="button"  type="submit" name="edit_user" value= <%= sessionVariables.userEmail %> > Kontodaten ändern</button> </form>  
                 <a href="/goto_delete_account" class="button">Konto Löschen</a>
                 <a href="/getmovie_manager" class="button">Filmprogramm bearbeiten</a>
                         <% break;
