@@ -104,6 +104,49 @@ module.exports = function(app, db, passwordHasher){
     });
 
 
+    //Änderung der Kontodaten Schreiben(Änderung in der DB)
+    app.post("/edit_account", function (req, res){
+        //If-Statements prüfen ob eine Eingabe getätigt wurde, wenn ja wird die Eingabe aus dem Formular in einer Variable gespeichert, wenn nein wird der Wert aus der Sessionvariable gespeichert.
+        if(!req.body.email) {var email = req.session.sVariables.userEmail}
+        else{var email = req.body.email} 
+
+        if(!req.body.vorname){var vorname = req.session.sVariables.userName}
+        else{var vorname = req.body.vorname}  
+        
+        if(!req.body.nachname){var nachname = req.session.sVariables.userLastname}
+        else{var nachname = req.body.nachname}  
+        
+        if(!req.body.rolle){var rolle = req.session.sVariables.role}
+        else{var rolle = req.body.rolle}
+        var passwort;
+        console.log(rolle)
+        //Abfrage ob das eingegebene Passwort mit dem aus der Datenbank übereinstimmt, zur Sicherheitsüberprüfung. Eine Änderung der Nutzerdaten ist nur mit Passwort möglich, oder Admin-Rolle
+        if(rolle!="admin"){
+            db.get( `SELECT * FROM benutzer WHERE email = "${req.session.sVariables.userEmail}"`, function(err, rows) {
+                
+                if (!passwordHasher.verify(req.body.passwort,rows.passwort)) {
+                    console.log(err)
+                    res.render("user_sites/edit_account", {fehlertext: "Das Passwort ist Falsch", sessionVariables: req.session.sVariables});
+                }
+                if (req.body.passwort_neu){passwort = passwordHasher.generate(req.body.passwort_neu)}
+                    else {passwort = rows.passwort}
+                    });
+                }
+               
+        //Als Admin braucht es keine Passwortüberprüfung       
+        else if (req.body.passwort_neu){ passwort = req.body.passwort_neu}
+            else { passwort = rows.passwort}
+             //Daten werden neu in die DB geschrieben. Auch wenn nicht alle Daten geändert werden, werden alle Daten neu in die DB geschrieben
+             //SetTimeout sorgt dafür dass db.run() erst nach  db.get() ausgeführt wird, ist nicht der schöne Weg, aber funktioniert
+             setTimeout(() => {
+                db.run( `UPDATE benutzer SET email="${email}",vorname="${vorname}",nachname="${nachname}",passwort="${passwort}",rolle="${rolle}" WHERE email="${req.session.sVariables.userEmail}"`, function(err, rows){
+                    res.render("login_and_register/login", {fehlertext: "Kontodaten geändert, bitte erneut anmelden.", sessionVariables: req.session.sVariables});
+                 });
+                 
+             }, 50); 
+    });
+
+
     //Benutzer Löschen aus dem Admin-Panel heraus
       app.post("/goto_delete_account_admin", function (req, res) {  
           var delete_user = req.body.delete_user;
