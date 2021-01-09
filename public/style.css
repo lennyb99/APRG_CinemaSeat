@@ -92,7 +92,8 @@ html {
       color: white;
       margin-top: 10%;
       padding: 5px 5px;
-      margin-right: 10%; 
+      margin-left: 5%;
+      margin-right: 5%; 
       text-decoration: none;
       line-height: 50px;
       font-weight: 200;
@@ -215,9 +216,12 @@ td{
   border-radius:3px;
   padding:70px 100px;
 }
+
+
 .input-container{
   position:relative;
   margin-bottom:25px;
+  
 }
 .input-container label{
   position:absolute;
@@ -240,8 +244,28 @@ td{
 .input-container input:focus{ 
  border:none;	
  outline:none;
- border-bottom:1px solid #24ffbd;	
+ border-bottom:1px solid #24ffbd;
 }
+.input-container button{
+
+    display: inline;
+    float: left;
+    size: 10px;
+    background-color: #90040B;
+    border:200px;
+    color: white;
+    margin-top: 10%;
+    padding: 5px 5px;
+    margin-right: 10%; 
+    text-decoration: none;
+    line-height: 50px;
+    font-weight: 200;
+}
+
+.input-container button:hover{
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.267);
+}
+
 .btn{
   color:#fff;
   background-color:#e74c3c;
@@ -255,15 +279,7 @@ td{
   cursor:pointer;
   position:relative;
 }
-/*.btn:after{
-  content:"";
-  position:absolute;
-  background:rgba(0,0,0,0.50);
-  top:0;
-  right:0;
-  width:100%;
-  height:100%;
-}*/
+
 .input-container input:focus ~ label,
 .input-container input:valid ~ label{
   top:-12px;
