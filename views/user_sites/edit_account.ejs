@@ -11,49 +11,94 @@
     <h1>Konto bearbeiten</h1>
 
 
+
         <body>
-
-            <div class="box">
-                <form>
-                <div class="input-container">
-                    <label for="Vorname">Vorname</label> <br>
-                    <input type="text" name="vorname" placeholder=" <%=sessionVariables.userName%> "> 		
+           
+            <% switch (sessionVariables.role) {
+                case 'admin' : %>
+                <div class="box">
+                    <form action="/edit_account" method="POST">
+                    <div class="input-container">
+                        <label for="Vorname">Vorname</label> <br>
+                        <input type="text" name="vorname" placeholder=" <%=sessionVariables.userName%> "> 		
+                    </div>
+                    <div class="input-container">		
+                        <label for="Nachname">Nachname</label> <br>
+                    <input type="text" name="nachname" placeholder=" <%=sessionVariables.userLastname%>" >
+                    </div>
+                    <div class="input-container">
+                        <label for="Email">Email</label> <br>
+                        <input type="email" name="email" placeholder="<%=sessionVariables.userEmail%>" >
+                    </div>
+                    <div class="input-container">
+                    <label for="Passwort">Passwort Ändern</label> <br>
+                    <input type="password" name="passwort_neu" placeholder="Neues Passwort">
+                    <br>
+                    <br>
+        
+                    <div class="input-container">
+                        <select name="rolle">
+                            <option value="user">Benutzer</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                
+                    </div>
+                    
+        
+                    <button type="submit" class="button"> Übernehmen</button>
+                </form>	
                 </div>
-                <div class="input-container">		
-                    <label for="Nachname">Nachname</label> <br>
-                <input type="text" name="nachname" placeholder=" <%=sessionVariables.userLastname%>" >
+                        <% break;
+                
+                case 'user' : %>
+                <div class="box">
+                    <form action="/edit_account" method="POST">
+                    <div class="input-container">
+                        <label for="Vorname">Vorname</label> <br>
+                        <input type="text" name="vorname" placeholder=" <%=sessionVariables.userName%> "> 		
+                    </div>
+                    <div class="input-container">		
+                        <label for="Nachname">Nachname</label> <br>
+                    <input type="text" name="nachname" placeholder=" <%=sessionVariables.userLastname%>" >
+                    </div>
+                    <div class="input-container">
+                        <label for="Email">Email</label> <br>
+                        <input type="email" name="email" placeholder="<%=sessionVariables.userEmail%>" >
+                    </div>
+                    <div class="input-container">
+                    <label for="Passwort">Passwort Ändern</label> <br>
+                    <input type="password" name="passwort_neu" placeholder="Neues Passwort">
+                    <br>
+                    <br>
+        
+                
+                    <input type="password" name="passwort" placeholder="Änderungen mit Passwort bestätigen" required> 
+                    </div>
+                    
+        
+                    <button type="submit" class="button"> Übernehmen</button>
+                </form>	
                 </div>
-                <div class="input-container">
-                    <label for="Email">Email</label> <br>
-                    <input type="email" name="email" placeholder="<%=sessionVariables.userEmail%>" >
-                </div>
-                <div class="input-container">
-                <label for="Passwort">Passwort Ändern</label> <br>
-                <input type="password" name="passwort_alt" placeholder="Altes Passwort" required>
-                <input type="password" name="passwort_neu" placeholder="Neues Passwort" required>
-                </div>
-                <div class="input-container">
-                    <select name="rolle">
-                        <option value="User">Benutzer</option>
-                        <option value="Admin">Administrator</option>
-                    </select>
-                </div>
-                <button type="submit" class="form_button"> Änderung Vornehmen</button>
-            </form>	
-            </div>
-
-
+                        <% break;
+                
+                } %>
 
            
-          
 
-            <h2>
-                <h2> <%= fehlertext %> </h2>
+            <h2> <%= fehlertext %> </h2>
+
             <p></p>
+            <div class="input-container">
             <a href="/goto_account_settings" class="button">Kontoeinstellungen</a>
-            <p></p>
             <a href="/goto_logout" class="button">Logout</a>   
-            </h2>
+         </div>
+
+
+     
+
+            
+
         </body>
 
 
