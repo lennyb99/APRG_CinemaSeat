@@ -8,22 +8,30 @@
     </head>
     <body>
 
-        <form action="/oncreate_admin" method="POST">
-            Vorname: <br>
-            <input type="text" name="vorname" required> <br>
-            <p></p>
-            Nachname: <br>
-            <input type="text" name="nachname" required> <br>
-            <p></p>
-            Email Adresse: <br>
-            <input type="email" name="email" required> <br>
-            <p></p>
-            Passwort Festlegen: <br>
-            <input type="password" name="passwort" required> 
-            <p></p>
-            <button type="submit"> Neues Konto anlegen</button>
+        <div class="box">
+            <form action="/oncreate" method="POST">
+            <div class="input-container">
+                <label for="Vorname"></label> <br>
+                <input type="text" name="vorname" placeholder="Vorname"required> 		
+            </div>
+            <div class="input-container">		
+                <label for="Nachname"></label> <br>
+            <input type="text" name="nachname" placeholder="Nachname" required>
+            </div>
+            <div class="input-container">
+                <label for="Email"></label> <br>
+                <input type="email" name="email" placeholder="Email"required >
+            </div>
+            <div class="input-container">
+            <label for="Passwort"></label> <br>
+            <input type="password" name="passwort" placeholder="Passwort" required>
+            </div>
+            
+           <button type="submit" class="form_button"> Hinzufügen</button>
         </form>
-
+        </div>
+        <a href="/goto_user_manager" class="button">Benutzerverwaltung</a>
+        <a href="/goto_logout" class="button">Logout</a>   
         <h2> <%= fehlertext %> </h2>
     </body>
 </html>
