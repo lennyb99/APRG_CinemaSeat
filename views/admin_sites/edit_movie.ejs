@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <html>
+
+        <head> 
+            <base href="/">               
+            <link type="text/css" rel="stylesheet" href="style.css" />
+            <title> Film Bearbeiten</title>
+            <%- include('../navbar')%>
+    </head>
+
+    <h1>Film Bearbeiten</h1>
+
+
+
+        <body>
+           
+            
+                <div class="box">
+                    <form action="/edit_Movie" method="POST">
+                    <div class="input-container">
+                        <label for="Filmtitel">Filmtitel</label> <br>
+                        <input type="text" name="filmtitel_neu" placeholder=" <%=selectedMovie.filmtitel%> "> 		
+                    </div>
+                    <div class="input-container">		
+                        <label for="Beschreibung">Filmbeschreibung</label> <br>
+                        <input type="text" name="beschreibung_neu" placeholder=" <%=selectedMovie.beschreibung%>" >
+                    </div>
+                    <div class="input-container">
+                        <label for="Eintrittspreis">Eintrittspreis</label> <br>
+                        <input type="text" name="eintrittspreis_neu" placeholder="<%=selectedMovie.eintrittspreis%>" >
+                    </div>
+                    <div class="input-container">
+                        <label for="Kennung">Kennung</label> <br>
+                        <input type="text" name="kennung_neu" placeholder="<%=selectedMovie.kennung%>" >
+                    </div>
+                    <div class="input-container">
+                        <label for="Trailer">Link zum Trailer (Youtube)</label> <br>
+                        <input type="text" name="trailer_neu" placeholder="<%=selectedMovie.trailer%>" >
+                    </div>
+                    <div class="input-container">
+                        <label for="Fotourl">Link zum Fotobanner</label> <br>
+                        <input type="text" name="fotourl_neu" placeholder="<%=selectedMovie.fotourl%>">
+                        <input type="hidden" name="kennung_old" value="<%=kennung_old%>">
+                    <br>
+                    <br>
+        
+                    
+                
+                    </div>
+                    
+        
+                    <button type="submit" class="button"> Übernehmen</button>
+                </form>	
+                </div>
+                
+                
+
+           
+
+            <p></p>
+            <div class="input-container">
+            <a href="/getmovie_manager" class="button">Zurück</a> 
+         </div>
+
+
+     
+
+            
+
+        </body>
+
+
+</html>
