@@ -90,7 +90,7 @@ module.exports = function(app, db, passwordHasher){
             }
             console.log(allUsers)
             //Das Array wird an user_manager übergeben und dort wieder ausgelesen (siehe user_manager)
-            res.render("admin_sites/user_manager", {allUsers: allUsers,fehlertext: "Erfolgreich registriert!", sessionVariables: req.session.sVariables});
+            res.render("admin_sites/user_manager", {allUsers: allUsers,fehlertext: "Neuer Benutzer hinzugefügt.", sessionVariables: req.session.sVariables});
         });
     });
     //Kontodaten verändern Admin + regular User
@@ -98,7 +98,7 @@ module.exports = function(app, db, passwordHasher){
         var edit_user = req.body.edit_user;
         db.run(`SELECT FROM benutzer WHERE email = "${edit_user}"; `, function(err,rows){
             res.render("user_sites/edit_account", {fehlertext: " ", sessionVariables: req.session.sVariables});
-
+       
         });
 
     });
@@ -121,31 +121,96 @@ module.exports = function(app, db, passwordHasher){
         var passwort;
         console.log(rolle)
         //Abfrage ob das eingegebene Passwort mit dem aus der Datenbank übereinstimmt, zur Sicherheitsüberprüfung. Eine Änderung der Nutzerdaten ist nur mit Passwort möglich, oder Admin-Rolle
-        if(rolle!="admin"){
+       
             db.get( `SELECT * FROM benutzer WHERE email = "${req.session.sVariables.userEmail}"`, function(err, rows) {
                 
                 if (!passwordHasher.verify(req.body.passwort,rows.passwort)) {
                     console.log(err)
                     res.render("user_sites/edit_account", {fehlertext: "Das Passwort ist Falsch", sessionVariables: req.session.sVariables});
+                    return;
                 }
                 if (req.body.passwort_neu){passwort = passwordHasher.generate(req.body.passwort_neu)}
                     else {passwort = rows.passwort}
-                    });
-                }
+                  
+                
                
-        //Als Admin braucht es keine Passwortüberprüfung       
-        else if (req.body.passwort_neu){ passwort = req.body.passwort_neu}
-            else { passwort = rows.passwort}
-             //Daten werden neu in die DB geschrieben. Auch wenn nicht alle Daten geändert werden, werden alle Daten neu in die DB geschrieben
-             //SetTimeout sorgt dafür dass db.run() erst nach  db.get() ausgeführt wird, ist nicht der schöne Weg, aber funktioniert
-             setTimeout(() => {
-                db.run( `UPDATE benutzer SET email="${email}",vorname="${vorname}",nachname="${nachname}",passwort="${passwort}",rolle="${rolle}" WHERE email="${req.session.sVariables.userEmail}"`, function(err, rows){
-                    res.render("login_and_register/login", {fehlertext: "Kontodaten geändert, bitte erneut anmelden.", sessionVariables: req.session.sVariables});
-                 });
+                //Daten werden neu in die DB geschrieben. Auch wenn nicht alle Daten geändert werden, werden alle Daten neu in die DB geschrieben
+                //SetTimeout sorgt dafür dass db.run() erst nach  db.get() ausgeführt wird, ist nicht der schöne Weg, aber funktioniert
                  
-             }, 50); 
+                    db.run( `UPDATE benutzer SET email="${email}",vorname="${vorname}",nachname="${nachname}",passwort="${passwort}",rolle="${rolle}" WHERE email="${req.session.sVariables.userEmail}"`, function(err, rows){
+                        res.render("login_and_register/login", {fehlertext: "Kontodaten geändert, bitte erneut anmelden.", sessionVariables: req.session.sVariables});
+                    });
+              
+
+            });
     });
 
+
+  //Kontodaten verändern Admin
+  app.post("/goto_user_manager_edit", function (req, res){
+    var edit_user = req.body.edit_user;
+    db.get(`SELECT * FROM benutzer WHERE email = "${edit_user}"; `, function(err,rows){
+        req.AdminEdit = {
+            userName: rows.vorname,
+            userEmail: rows.email,
+            userLastname: rows.nachname,
+            role: rows.rolle
+        }
+        res.render("admin_sites/user_manager_edit", {fehlertext: " ", sessionVariables: req.session.sVariables, AdminEdit: req.AdminEdit});
+
+    });
+    
+});
+
+
+    //Bearbeitung eines Benutzers aus dem User-Manager heraus(nur als Admin möglich)
+    app.post("/user_manager_edit", function (req, res){
+    
+        //If-Statements prüfen ob eine Eingabe getätigt wurde, wenn ja wird die Eingabe aus dem Formular in einer Variable gespeichert, wenn nein wird der Wert aus der Sessionvariable gespeichert.
+        console.log(req.body.UserEmail)
+        db.get( `SELECT * FROM benutzer WHERE email = "${req.body.UserEmail}"`, function(err, rows) {
+
+        if(!req.body.email) {var email = rows.email}
+        else{var email = req.body.email} 
+
+        if(!req.body.vorname){var vorname = rows.vorname}
+        else{var vorname = req.body.vorname}  
+        
+        if(!req.body.nachname){var nachname = rows.nachname}
+        else{var nachname = req.body.nachname}  
+        
+        if(!req.body.rolle){var rolle = rows.rolle}
+        else{var rolle = req.body.rolle}
+        var passwort;
+        console.log(rolle)
+
+         //Passwort wird im Falle einer Änderung vorher gehashed       
+        if (req.body.passwort_neu){passwort = passwordHasher.generate(req.body.passwort_neu)}
+        else {passwort = rows.passwort}
+                  
+                //Daten werden neu in die DB geschrieben. Auch wenn nicht alle Daten geändert werden, werden alle Daten neu in die DB geschrieben
+                //SetTimeout sorgt dafür dass db.run() erst nach  db.get() ausgeführt wird, ist nicht der schöne Weg, aber funktioniert
+                
+                    db.run( `UPDATE benutzer SET email="${email}",vorname="${vorname}",nachname="${nachname}",passwort="${passwort}",rolle="${rolle}" WHERE email="${req.body.UserEmail}"`, function(err, rows){
+                       
+                    });
+                 
+                 
+                 db.all(`SELECT * FROM benutzer;`,function(err,rows) {
+                    var allUsers  =[]
+                    // Aus der DB werden alle Benutzer als "rows" ausgelesen und im array allUsers gespeichert
+                    for (var i = 0; i < rows.length; i++){
+                        allUsers.push(rows[i])
+                    }
+                    console.log(allUsers)
+                    //Das Array wird an user_manager übergeben und dort wieder ausgelesen (siehe user_manager)
+                    res.render("admin_sites/user_manager", { fehlertext: undefined, allUsers: allUsers, sessionVariables: req.session.sVariables});
+                });
+
+    });   
+
+        
+    });
 
     //Benutzer Löschen aus dem Admin-Panel heraus
       app.post("/goto_delete_account_admin", function (req, res) {  
