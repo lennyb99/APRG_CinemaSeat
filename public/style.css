@@ -1,7 +1,6 @@
 
 
 
-/*Quellenangabe Navigationsleiste: https://codepen.io/mikerojas87/pen/rojKb */
 
 
 html {
@@ -23,6 +22,9 @@ html {
     background: #102A37;
   }
   
+/* 
+ Navigationsleiste: https://codepen.io/mikerojas87/pen/rojKb 
+ */
   nav ul {
     list-style: none;
     padding-left: 0;
@@ -170,7 +172,9 @@ box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.267);
 }
 
 
-
+/* 
+ Tabelle: https://codepen.io/nikhil8krishnan/pen/WvYPvv
+ */
 table{
   width:100%;
   table-layout: fixed;
@@ -210,6 +214,11 @@ td{
     display: block;
     text-align: center;
 }
+
+/*
+Eingabeformular https://codepen.io/nikstech/pen/xmMxpr
+*/
+
 .box{
   position: relative;
   left:30%;
@@ -319,4 +328,29 @@ h4 {
     font-weight: 400;
     text-align: center;
 
+}
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.seat {
+  float: left;
+  display: block;
+  margin: 5px;
+  background: #4CAF50;
+  width: 100px;
+  height: 140px;
+}
+
+.seat-select {
+  display: none;
+}
+
+.seat-select:checked+.seat {
+  background: #F44336;
 }
