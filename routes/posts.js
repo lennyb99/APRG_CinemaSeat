@@ -93,6 +93,7 @@ module.exports = function(app, db, passwordHasher){
             res.render("admin_sites/user_manager", {allUsers: allUsers,fehlertext: "Erfolgreich registriert!", sessionVariables: req.session.sVariables});
         });
     });
+
     //Kontodaten verändern Admin + regular User
     app.post("/goto_edit_account", function (req, res){
         var edit_user = req.body.edit_user;
@@ -191,7 +192,6 @@ module.exports = function(app, db, passwordHasher){
         db.run( `INSERT INTO filmprogramm(filmtitel,beschreibung,kennung, trailer, eintrittspreis,fotourl,saalsitze) 
                     VALUES ("${req.body.filmtitel}","${req.body.beschreibung}","${req.body.kennung}","${req.body.trailer}","${req.body.eintrittspreis}","${req.body.fotourl}","000010020100110120200210220")`, 
             function(err, rows) {
-            console.log(err)
         });
         db.all(`SELECT * FROM filmprogramm;`, function(err,rows){
             allUsers = res.allUsers;
@@ -206,7 +206,6 @@ module.exports = function(app, db, passwordHasher){
     app.post("/goto_delete_movie", function (req, res) {  
         var delete_movie = req.body.delete_movie;
         db.run(`DELETE FROM filmprogramm WHERE kennung = "${delete_movie}";`,function(err,rows) {
-            console.log(err)
           // res.render("admin_sites/movie_manager", {fehlertext: "Der Film wurde erfolgreich gelöscht.", sessionVariables: req.session.sVariables}); 
         });
         db.all(`SELECT * FROM filmprogramm;`, function(err,rows){
@@ -221,8 +220,51 @@ module.exports = function(app, db, passwordHasher){
 
     app.post("/goto_edit_movie", function (req, res){
         edit_movie = req.body.edit_movie
-        console.log(edit_movie)
+        db.all(`SELECT * FROM filmprogramm WHERE kennung = "${edit_movie}";`,function(err,rows){            
+            
+            selectedMovie = rows[0];
+            kennung = selectedMovie.kennung
+
+            res.render("admin_sites/edit_movie", {sessionVariables: req.session.sVariables, selectedMovie : selectedMovie, kennung_old :kennung });
+        })
     })
+
+    app.post("/edit_Movie",function(req,res){
+        kennung_old = req.body.kennung_old;
+        if(!req.body.filmtitel_neu) {var filmtitel = selectedMovie.filmtitel}
+        else{var filmtitel = req.body.filmtitel_neu} 
+
+        if(!req.body.beschreibung_neu){var beschreibung = selectedMovie.beschreibung}
+        else{var beschreibung = req.body.beschreibung_neu}  
+        
+        if(!req.body.kennung_neu){var kennung = selectedMovie.kennung}
+        else{var kennung = req.body.kennung_neu}  
+        
+        if(!req.body.eintrittspreis_neu){var eintrittspreis = selectedMovie.eintrittspreis}
+        else{var eintrittspreis = req.body.eintrittspreis_neu}
+
+        if(!req.body.trailer_neu){var trailer = selectedMovie.trailer}
+        else{var trailer = req.body.trailer_neu}
+
+        if(!req.body.fotourl_neu){var fotourl = selectedMovie.fotourl}
+        else{var fotourl = req.body.fotourl_neu}
+
+        
+        db.run(`UPDATE filmprogramm SET filmtitel="${filmtitel}",beschreibung="${beschreibung}",kennung="${kennung}",eintrittspreis="${eintrittspreis}",trailer="${trailer}",fotourl="${fotourl}" WHERE kennung="${kennung_old}"`,function(err){ 
+        })
+        db.all(`SELECT * FROM filmprogramm;`, function(err,rows){
+            allUsers = res.allUsers;
+            allMovies = []
+            for(i=0; i<rows.length;i++){
+                allMovies.push(rows[i])
+            }   
+            res.render("admin_sites/movie_manager", { fehlertext: undefined,allMovies: allMovies, allUsers: allUsers, sessionVariables: req.session.sVariables})
+        })
+    })
+
+    
+
+    
 
     app.post("/getBuyConfirm", function(req, res){
 
