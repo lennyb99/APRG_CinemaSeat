@@ -9,21 +9,29 @@
         <!------------------Titel------------------->
         <h1></h1>
         <body>
-       <p1>
-           SCREEN ZUR SITZWAHL
-       </p1> 
+       <h1>
+           SITZWAHL
+       </h1> 
 
-       <p2>
+       <h2>
            Für den Film: <%=titel%>
-       </p2>
+       </h2>
 
-       <p3>
+
+       <div class="box">
         <form action="/getBuyConfirm" method="POST">
-            <label for="seat" >Sitzplatz (Reihe, Platznummer) (1-9,1-9)</label>
-            <input name="sitzplatz"required><br><br>
-            <button type="submit" class="ticket_button">Sitzplatzticket kaufen </button>
-        </form>
-       </p3>
+
+        <div class="input-container">
+            <label for="seat">Sitzplatz (1-9  ,  1-9)</label> 
+            <br>
+            <input type="text" name="seat" placeholder="Reihe, Platznummer"required> 		
+        </div>
+
+       <button type="submit" class="ticket_button"> Sitzplatzticket kaufen</button>
+    </form>
+    </div>
+
+
     </body>
 </head>
 
