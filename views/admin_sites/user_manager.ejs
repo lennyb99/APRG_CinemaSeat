@@ -13,6 +13,7 @@
                   <th>Vorname</th>
                   <th>Nachname</th>
                   <th>E-Mail</th>
+                  <th>Benutzerrolle</th>
                   <th> </th>
                 </tr>
               </thead>
@@ -28,7 +29,8 @@
                     <td><%= allUsers[i].vorname%></td> 
                     <td><%= allUsers[i].nachname %></td> 
                     <td><%= allUsers[i].email   %></td>
-                    <td><form action="/goto_edit_account" method="POST"> <button type="submit" name="edit_user" value=<%=allUsers[i].email %> class="button">Bearbeiten</a></td>
+                    <td><%= allUsers[i].rolle   %></td>
+                    <td><form action="/goto_user_manager_edit" method="POST"> <button type="submit" name="edit_user" value=<%= allUsers[i].email %> class="button">Bearbeiten</a></td>
                     <td><form action="/goto_delete_account_admin" method="POST"> <button type="submit" name="delete_user" value=<%= allUsers[i].email %> class="button">  Löschen</button></form></div> </td>
                 </tr>
             </tbody>   
