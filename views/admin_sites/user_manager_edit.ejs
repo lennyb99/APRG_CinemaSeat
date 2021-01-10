@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <html>
+
+        <head> 
+            <base href="/">               
+            <link type="text/css" rel="stylesheet" href="style.css" />
+            <title> Mein Konto</title>
+            <%- include('../navbar')%>
+    </head>
+
+    <h1>Konto bearbeiten</h1>
+
+
+
+        <body>
+           
+       
+                <div class="box">
+                    <form action="/user_manager_edit" method="POST">
+                    <div class="input-container">
+                        <label for="Vorname">Vorname</label> <br>
+                        <input type="text" name="vorname" placeholder=" <%=AdminEdit.userName%> "> 		
+                    </div>
+                    <div class="input-container">		
+                        <label for="Nachname">Nachname</label> <br>
+                    <input type="text" name="nachname" placeholder=" <%=AdminEdit.userLastname%>" >
+                    </div>
+                    <div class="input-container">
+                        <label for="Email">Email</label> <br>
+                        <input type="email" name="email" placeholder="<%=AdminEdit.userEmail%>" >
+                    </div>
+                    <div class="input-container">
+                    <label for="Passwort">Passwort Ändern</label> <br>
+                    <input type="password" name="passwort_neu" placeholder="Neues Passwort">
+                    <br>
+                    <br>
+        
+                    <div class="input-container">
+                        <select name="rolle">
+                            <option value="user">Benutzer</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="UserEmail" value="<%=AdminEdit.userEmail%>">
+                
+                    </div>
+                    
+        
+                    <button type="submit" class="button"> Übernehmen</button>
+                </form>	
+                </div>
+                   
+             
+
+           
+
+            <h2> <%= fehlertext %> </h2>
+
+            <p></p>
+            <div class="input-container">
+            <a href="/goto_account_settings" class="button">Kontoeinstellungen</a>
+            <a href="/goto_logout" class="button">Logout</a>   
+         </div>
+
+
+     
+
+            
+
+        </body>
+
+
+</html>
