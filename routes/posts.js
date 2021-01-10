@@ -139,7 +139,7 @@ module.exports = function(app, db, passwordHasher){
                 //SetTimeout sorgt dafür dass db.run() erst nach  db.get() ausgeführt wird, ist nicht der schöne Weg, aber funktioniert
                  
                     db.run( `UPDATE benutzer SET email="${email}",vorname="${vorname}",nachname="${nachname}",passwort="${passwort}",rolle="${rolle}" WHERE email="${req.session.sVariables.userEmail}"`, function(err, rows){
-                        res.render("login_and_register/login", {fehlertext: "Kontodaten geändert, bitte erneut anmelden.", sessionVariables: req.session.sVariables});
+                        res.render("login_and_register/login", {fehlertext: "Kontodaten geändert, bitte erneut anmelden.", sessionVariables: undefined});
                     });
               
 

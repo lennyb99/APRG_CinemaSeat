@@ -27,6 +27,8 @@
                      Sollte der Benutzer sich nicht eingeloggt haben, so ist die Variable sessionUserName undefinied. --> 
                 <% if(sessionVariables) {%>
                         <li onclick="location.href='/goto_account_settings';" id="nav__submenu-item"> <a>Kontoeinstllungen von <%= sessionVariables.userName %></a></li>
+                        <li onclick="location.href='/goto_logout';" id="nav__submenu-item"> <a>Logout</a></li>
+
         
                 <%} else {%>
                         <li onclick="location.href='/goto_login';" id="nav__submenu-item"> <a>Login</a></li>
