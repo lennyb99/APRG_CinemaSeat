@@ -133,11 +133,12 @@ nav ul {
 }
 
 p {
-  padding-left: 20%;
+  padding-left: 30%;
   color: white;
   font-size: medium;
+  text-align: left;
+  width: 80%;
 }
-
 .movie_prev {
   position: relative;
   padding: 10px;
@@ -348,8 +349,8 @@ h3 {
   margin: 30px auto 20px;
   margin-bottom: 5px;
   color: #f0f0f0;
-  font-weight: 400;
-  text-align: center;
+  font-weight: 200;
+  text-align: left;
 }
 
 h4 {
