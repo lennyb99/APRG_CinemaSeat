@@ -7,15 +7,19 @@
         <%- include('navbar')%>
 
         <!------------------Titel------------------->
-        <h1><%=titel %></h1>
+        <br>
+        <h2 style="color: white;font-weight: 200;"><%=titel %></h2>
+        <br>
         <!------------------Trailer------------------->
         <div style="text-align: center;">
             <iframe width="560" height="315" src=<%=trailer.toString()%> frameborder="0" allowfullscreen></iframe>
         </div>
         <!------------------Beschreibung------------------->
-        <p1>
+     
+        <p>
             <%=beschreibung%>
-        </p1>
+        </p>
+   
         <!------------------Button zur Platzwahl------------------->
         <p2>
             <form action="/getSeatSelect" method="POST"> <button type="submit" name="kennung" value=<%=kennung%> class="ticket_button">Zur Sitzwahl</button></form>
