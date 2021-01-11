@@ -16,15 +16,47 @@
        <h2>
            Für den Film: <%=titel%>
        </h2>
-
+         <% if (typeof fehlertext != undefined) { %>
+        <%= fehlertext %>
+        <% } %><br>
 
        <div class="box">
+          
+        
+          
         <form action="/getBuyConfirm" method="POST">
-
         <div class="input-container">
-            <label for="seat">Sitzplatz (1-9  ,  1-9)</label> 
-            <br>
-            <input type="text" name="seat" placeholder="Reihe, Platznummer"required> 		
+            Sitzreihe im Saal:
+            <select name="reihe">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+
+            </select>
+            </div>
+        <div class="input-container">
+            Sitznummer der Reihe:
+            <select name="nummer">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+
+
+            </select>
         </div>
 
        <button type="submit" class="ticket_button"> Sitzplatzticket kaufen</button>
