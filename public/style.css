@@ -1,118 +1,144 @@
-
-
-
-
-
 html {
-    box-sizing: border-box;
-  }
-  
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-  }
-  
-  body {
-    
-    margin: 0;
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    background: #102A37;
-  }
-  
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #102A37;
+}
+
+body,
+a,
+form {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+
 /* 
- Navigationsleiste: https://codepen.io/mikerojas87/pen/rojKb 
- */
-  nav ul {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+Navigationsleiste: https://codepen.io/mikerojas87/pen/rojKb 
+*/
 
-  
-  #nav {
-    width: 100%;
-    margin: 0 auto;
-    background: #90040B;
-    color: #f0f0f0;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.267);
-  }
-  #nav a {
-    display: block;
-    padding: 0 50px;
-    line-height: inherit;
-    cursor: pointer;
-    
-  }
-  #nav__menu {
-    line-height: 50px;
-    font-weight: 500;
-    width: fit-content (20%);
-    text-transform: uppercase;
-    
-  }
-  #nav__menu-item {
-    display: inline-block;
-    position: static;
-  }
-  #nav__menu-item:hover {
-    box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.267);
-    background-color: #90040B;
-    color: white;
+.buttons {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-  }
-  #nav__menu-item:hover #nav__submenu {
-    display: block;
-  }
-  #nav__submenu {
-    font-weight: 300;
-    text-transform: none;
-    display: none;
-    position: absolute;
-    width: fit-content (5%);
-    background-color: #184443;
-    z-index: 100;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.267);
-  }
-  #nav__submenu-item:hover {
-    background: #184443;
-    box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.267);
-  }
-  
-  
+.button {
+  display: inline;
+  float: left;
+  size: 10px;
+  background-color: #90040B;
+  border: 10px;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 0.5em;
+  margin-right: 0.5rem;
+  padding: 5px 5px;
+  font-size: 16px;
+  line-height: 2.5;
+}
 
+.logout_btn {
+  display: inline;
+  float: left;
+  size: 10px;
+  background-color: #0c0101;
+  border: 10px;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 0.5em;
+  margin-left: 1rem;
+  padding: 5px 5px;
+  font-size: 16px;
+  line-height: 2.5;
+}
 
-  .button{
-      display: inline;
-      float: left;
-      size: 10px;
-      background-color: #90040B;
-      border:200px;
-      border-radius: 2%;
-      color: white;
-      margin-top: 10%;
-      padding: 5px 5px;
-      margin-left: 5%;
-      margin-right: 5%; 
-      text-decoration: none;
-      line-height: 50px;
-      font-weight: 200;
+.button:hover {
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.267);
+}
 
-  }
-  
-  .button:hover{
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.267);
-  }
+nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
-  p{
-    padding-left: 20%;
-    color: white; 
-    font-size: medium;
-  }
-.movie_prev{
+#nav {
+  width: 100%;
+  margin: 0 auto;
+  background: #90040B;
+  color: #f0f0f0;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.267);
+}
+
+#nav a {
+  display: block;
+  padding: 0 50px;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+#nav__menu {
+  line-height: 50px;
+  font-weight: 500;
+  width: fit-content (20%);
+  text-transform: uppercase;
+}
+
+#nav__menu-item {
+  display: inline-block;
+  position: static;
+}
+
+#nav__menu-item:hover {
+  box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.267);
+  background-color: #90040B;
+  color: white;
+}
+
+#nav__menu-item:hover #nav__submenu {
+  display: block;
+}
+
+#nav__submenu {
+  font-weight: 300;
+  text-transform: none;
+  display: none;
+  position: absolute;
+  width: fit-content (5%);
+  background-color: #184443;
+  z-index: 100;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.267);
+}
+
+#nav__submenu-item:hover {
+  background: #184443;
+  box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.267);
+}
+
+p {
+  padding-left: 20%;
+  color: white;
+  font-size: medium;
+}
+
+.movie_prev {
   position: relative;
   padding: 10px;
   padding-bottom: 100px;
@@ -124,15 +150,14 @@ html {
   box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.322);
   margin: 20px;
   width: 400px;
-
   height: available;
   min-height: 640px;
   float: left;
   background-color: #102A37;
   border-collapse: collapse;
-
 }
-.ticket_button{
+
+.ticket_button {
   float: center;
   position: absolute;
   top: 90%;
@@ -141,54 +166,57 @@ html {
   display: inline;
   size: 10px;
   background-color: #90040B;
-  border:200px;
+  border: 200px;
   color: white;
   padding: 5px 5px;
   text-decoration: none;
   line-height: 50px;
   font-weight: 200;
-
 }
-.ticket_button:hover{
+
+.ticket_button:hover {
   background-color: #0a7c00;
 }
 
-.form_button{
-  display: inline;
-  float: left;
+.form_button {
+  float: right;
   size: 10px;
   background-color: #90040B;
-  border:250px;
+  border: 250px;
   padding-left: 40px;
   padding-right: 40px;
   color: white;
   text-decoration: none;
   line-height: 50px;
   font-weight: 200;
-
 }
-.form_button:hover{
-box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.267);
+
+.form_button:hover {
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.267);
 }
 
 
 /* 
- Tabelle: https://codepen.io/nikhil8krishnan/pen/WvYPvv
- */
-table{
-  width:100%;
+Tabelle: https://codepen.io/nikhil8krishnan/pen/WvYPvv
+*/
+
+table {
+  width: 100%;
   table-layout: fixed;
 }
-.tbl-header{
-  background-color: rgba(255,255,255,0.3);
- }
-.tbl-content{
-  height:300px;
-  overflow-x:auto;
-  margin-top: 0px;
-  border: 1px solid rgba(255,255,255,0.3);
+
+.tbl-header {
+  background-color: rgba(255, 255, 255, 0.3);
 }
-th{
+
+.tbl-content {
+  height: 300px;
+  overflow-x: auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+th {
   padding: 50px 15px 5px;
   text-align: left;
   font-weight: 500;
@@ -196,106 +224,108 @@ th{
   color: #fff;
   text-transform: uppercase;
 }
-td{
+
+td {
   padding: 15px;
   text-align: left;
-  vertical-align:middle;
+  vertical-align: middle;
   font-weight: 300;
   font-size: 16px;
   color: #fff;
-  border-bottom: solid 1px rgba(255,255,255,0.1);
+  max-width: fit-content;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 }
 
-.text-center{
-  color:#fff;	
-  text-transform:uppercase;
-    font-size: 23px;
-    margin: -50px 0 80px 0;
-    display: block;
-    text-align: center;
+.text-center {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 23px;
+  margin: -50px 0 80px 0;
+  display: block;
+  text-align: center;
 }
+
 
 /*
 Eingabeformular https://codepen.io/nikstech/pen/xmMxpr
 */
 
-.box{
+.box {
   position: relative;
-  left:30%;
+  left: 30%;
   max-width: 40%;
   min-width: 100px;
-  border-radius:3px;
-  padding:70px 100px;
+  border-radius: 3px;
+  padding: 70px 100px;
 }
 
-
-.input-container{
-  position:relative;
-  margin-bottom:25px;
-  
+.input-container {
+  position: relative;
+  margin-bottom: 25px;
 }
-.input-container label{
-  position:absolute;
-  top:0px;
-  left:0px;
-  font-size:16px;
-  color:#fff;	
 
+.input-container label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 16px;
+  color: #fff;
   transition: all 0.5s ease-in-out;
 }
-.input-container input{ 
-  border:0;
-  border-bottom:1px solid rgb(255, 255, 255);  
-  background:transparent;
-  width:100%;
-  padding:8px 0 5px 0;
-  font-size:16px;
-  color:#fff;
-}
-.input-container input:focus{ 
- border:none;	
- outline:none;
- border-bottom:1px solid #24ffbd;
-}
-.input-container button{
 
-    display: inline;
-    float: left;
-    size: 10px;
-    background-color: #90040B;
-    border:200px;
-    color: white;
-    margin-top: 10%;
-    padding: 5px 5px;
-    margin-right: 10%; 
-    text-decoration: none;
-    line-height: 50px;
-    font-weight: 200;
+.input-container input {
+  border: 0;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  color: #fff;
 }
 
-.input-container button:hover{
+.input-container input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #24ffbd;
+}
+
+.input-container button {
+  display: inline;
+  float: left;
+  size: 10px;
+  background-color: #90040B;
+  border: 200px;
+  color: white;
+  margin-top: 10%;
+  padding: 5px 5px;
+  margin-right: 10%;
+  text-decoration: none;
+  line-height: 50px;
+  font-weight: 200;
+}
+
+.input-container button:hover {
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.267);
 }
 
-.btn{
-  color:#fff;
-  background-color:#e74c3c;
+.btn {
+  color: #fff;
+  background-color: #e74c3c;
   outline: none;
-    border: 0;
-    color: #fff;
-  padding:10px 20px;
-  text-transform:uppercase;
-  margin-top:50px;
-  border-radius:2px;
-  cursor:pointer;
-  position:relative;
+  border: 0;
+  color: #fff;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-top: 50px;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
 }
 
-.input-container input:focus ~ label,
-.input-container input:valid ~ label{
-  top:-12px;
-  font-size:12px;
-  
+.input-container input:focus~label,
+.input-container input:valid~label {
+  top: -12px;
+  font-size: 12px;
 }
 
 h1 {
@@ -305,12 +335,12 @@ h1 {
   color: #f0f0f0;
   text-align: left;
 }
-h2 {
-    width: auto;
-    margin: 5px auto 20px;
-    color: #8F0812;
-    text-align: center;
 
+h2 {
+  width: auto;
+  margin: 5px auto 20px;
+  color: #8F0812;
+  text-align: center;
 }
 
 h3 {
@@ -321,17 +351,14 @@ h3 {
   font-weight: 400;
   text-align: center;
 }
+
 h4 {
-    width: 500px;
-    margin: 5px auto 20px;
-    color: #8F0812;
-    font-weight: 400;
-    text-align: center;
-
+  width: 500px;
+  margin: 5px auto 20px;
+  color: #8F0812;
+  font-weight: 400;
+  text-align: center;
 }
-
-
-
 
 * {
   margin: 0;
