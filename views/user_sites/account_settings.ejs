@@ -22,27 +22,32 @@
             </p>
         </h2>
         <div>
-            <% switch (sessionVariables.role) {
-                case 'admin' : %>
-                <a href="/goto_user_manager" class="button">Benutzerverwaltung</a>
-                <form action="/goto_edit_account" method="POST"> <button class="button"  type="submit" name="edit_user" value= <%= sessionVariables.userEmail %> > Kontodaten ändern</button> </form>  
-                <a href="/goto_delete_account" class="button">Konto Löschen</a>
-                <a href="/getmovie_manager" class="button">Filmprogramm bearbeiten</a>
-                        <% break;
+
+        <% switch (sessionVariables.role) {
+
+            case 'admin' : %>
+                <div class="buttons">
+                    <button class="button"><a href="/goto_user_manager" >Benutzerverwaltung</a></button>
+                    <form action="" method=""> <button class="button" type="submit" name="edit_user">Kontodaten ändern</button> </form>
+                    <button class="button"><a href="/goto_delete_account">Konto Löschen</a></button>
+                    <button class="button"><a href="/getmovie_manager">Filmprogramm bearbeiten</a></button>
+                    <button class="button logout_btn"><a href="/goto_logout">Logout</a></button> 
+                </div>
+
+
+            <% break;
                 
-                case 'user' : %>
-                <form action="/goto_edit_account" method="POST"> <button class="button"  type="submit" name="edit_user" value= <%= sessionVariables.userEmail %> > Kontodaten ändern</button> </form>  
-                <a href="/goto_delete_account" class="button">Konto Löschen</a>
+            case 'user' : %>
+                <form action="" method=""> <button class="button" type="submit" name="edit_user">Kontodaten ändern</button> </form>
+                <button class="button"><a href="/goto_delete_account">Konto Löschen</a></button>
+            <% break;
                 
-                        <% break;
-                
-                } %>
+        } %>
 
 
         <p></p>
        
         <p></p>
-        <a href="/goto_logout" class="button">Logout</a>   
     </div>
     </body>
 
