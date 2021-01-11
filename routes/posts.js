@@ -26,7 +26,7 @@ module.exports = function(app, db, passwordHasher){
                     userLastname: rows.nachname,
                     role: rows.rolle
                 }
-                res.redirect("home");
+                res.redirect("goto_account_settings");
             }
             else {
                 res.render("login_and_register/login", {fehlertext: "Passwort stimmt nicht!", sessionVariables: undefined});
