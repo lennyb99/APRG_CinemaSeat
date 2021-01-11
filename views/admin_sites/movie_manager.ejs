@@ -13,37 +13,37 @@
                 <form action="/addMovie" method="POST">
                 <div class="input-container">
                     <label for="Filmtitel">Filmtitel</label> <br>
-                    <input type="text" name="filmtitel"> 		
+                    <input type="text" name="filmtitel" required> 		
                 </div>
                 <div class="input-container">		
                     <label for="Filmbeschreibung">Filmbeschreibung</label> <br>
-                <input type="text" name="beschreibung" >
+                <input type="text" name="beschreibung" required>
                 </div>
                 <div class="input-container">
                     <label for="Eintrittspreis">Eintrittspreis</label> <br>
-                    <input type="text" name="eintrittspreis">
+                    <input type="text" name="eintrittspreis" required>
                 </div>
                 <div class="input-container">
                 <label for="Kennung">Kennung</label> <br>
-                <input type="text" name="kennung" >
+                <input type="text" name="kennung" required>
                 </div>
                 <div class="input-container">
                     <label for="trailer">Link zum Trailer(Youtube):</label> <br>
-                    <input type="text" name="trailer">
+                    <input type="url" name="trailer" required>
                 </div>
                 <div class="input-container">
                     <label for="banner">  Link zum Fotobanner</label> <br>
-                    <input type="text" name="fotourl">
+                    <input type="url" name="fotourl" required>
                 </div>
     
-                <button type="submit" class="button"> Film hinzufügen</button>
+                <button type="submit" class="form_button"> Film hinzufügen</button>
             </form>	
             </div>
 
 
-            <div class=""></div>
+           
         <table cellpadding="0" cellspacing="0" border ="0">
-            <thead>
+            <div class="tbl-header">
                 <tr>
                   <th>filmtitel</th>
                   <th>beschreibung</th>
@@ -51,32 +51,28 @@
                   <th>trailer</th>
                   <th> </th>
                 </tr>
-              </thead>
-            </table>
-        </div>
+             </div>
 
                 
         <div class="tbl_content">
             <% for(var i = 0; i < allMovies.length; i++) { %>
-        <table cellpadding="0" cellspacing="0" border="0">
-        <tbody>
+       
+       
 
         <tr>
             <td><%= allMovies[i].filmtitel%></td> 
             <td><%= allMovies[i].beschreibung%></td> 
-            <td><%= allMovies[i].eintrittspreis%></td>
-            <td><%= allMovies[i].trailer%></td>
+            <td><%= allMovies[i].eintrittspreis%> € </td>
+            <td><a style="color: white" target="_blank" href="<%= allMovies[i].trailer%>"><%= allMovies[i].filmtitel%> - Trailer</a> </td>
+        
+
             <td><form action="/goto_edit_movie" method="POST"> <button type="submit" name="edit_movie" value= <%= allMovies[i].kennung %> class="button">  Bearbeiten</button></form></div> </td>
             <td><form action="/goto_delete_movie" method="POST"> <button type="submit" name="delete_movie" value= <%= allMovies[i].kennung %> class="button">  Löschen</button></form></div> </td>
            
         </tr>
-        </tbody>   
-    </table> 
-</div>
-</section>
-
-
+   
         <% } %>
+    </div>
 
     </table>
 </div>
