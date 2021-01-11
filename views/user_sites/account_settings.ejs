@@ -11,7 +11,7 @@
 
     <body>
         <h1>Benutzerkonto</h1>
-        <h2>
+        <h3>
             <p></p>
             Vorname: <%=sessionVariables.userName%>
             <p></p>
@@ -20,15 +20,16 @@
             Email: <%=sessionVariables.userEmail%> 
             <p></p>
             </p>
-        </h2>
+        </h3>
         <div>
-
+            <br>
+            <br>
         <% switch (sessionVariables.role) {
 
             case 'admin' : %>
                 <div class="buttons">
                     <button class="button"><a href="/goto_user_manager" >Benutzerverwaltung</a></button>
-                    <form action="" method=""> <button class="button" type="submit" name="edit_user">Kontodaten ändern</button> </form>
+                    <form action="goto_edit_account" method="POST"> <button class="button" type="submit" name="edit_user">Kontodaten ändern</button> </form>
                     <button class="button"><a href="/goto_delete_account">Konto Löschen</a></button>
                     <button class="button"><a href="/getmovie_manager">Filmprogramm bearbeiten</a></button>
                     <button class="button logout_btn"><a href="/goto_logout">Logout</a></button> 
@@ -38,10 +39,13 @@
             <% break;
                 
             case 'user' : %>
-                <form action="" method=""> <button class="button" type="submit" name="edit_user">Kontodaten ändern</button> </form>
-                <button class="button"><a href="/goto_delete_account">Konto Löschen</a></button>
-            <% break;
-                
+            <div class="buttons">
+
+            <form action="goto_edit_account" method="POST"> <button class="button" type="submit" name="edit_user">Kontodaten ändern</button> </form>
+            <button class="button"><a href="/goto_delete_account">Konto Löschen</a></button>
+        
+        </div>
+        <% break;
         } %>
 
 
