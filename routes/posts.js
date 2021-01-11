@@ -242,20 +242,20 @@ module.exports = function(app, db, passwordHasher){
         kennung = req.body.kennung
 
         db.get(`SELECT * FROM filmprogramm WHERE kennung = "${kennung}";`,function(err,rows){
-            
+            var fehlertext;
             titel = rows.filmtitel
             beschreibung = rows.beschreibung
             preis = rows.eintrittspreis
             trailer = rows.trailer
     
-            res.render("seatSelect", {kennung, titel, sessionVariables: req.session.sVariables});
+            res.render("seatSelect", {kennung, titel, sessionVariables: req.session.sVariables, fehlertext});
         })  
     })
 
     //Link zur Filmprogrammverwaltung
     app.post("/addMovie", function(req, res){
         db.run( `INSERT INTO filmprogramm(filmtitel,beschreibung,kennung, trailer, eintrittspreis,fotourl,saalsitze) 
-                    VALUES ("${req.body.filmtitel}","${req.body.beschreibung}","${req.body.kennung}","${req.body.trailer}","${req.body.eintrittspreis}","${req.body.fotourl}","000010020100110120200210220")`, 
+                    VALUES ("${req.body.filmtitel}","${req.body.beschreibung}","${req.body.kennung}","${req.body.trailer}","${req.body.eintrittspreis}","${req.body.fotourl}","00f01f02f03f04f05f06f07f08f09f10f11f12f13f14f15f16f17f18f19f20f21f22f23f24f25f26f27f28f29f30f31f32f33f34f35f36f37f38f39f40f41f42f43f44f45f46f47f48f49f50f51f52f53f54f55f56f57f58f59f60f61f62f63f64f65f66f67f68f69f70f71f72f73f74f75f76f77f78f79f80f81f82f83f84f85f86f87f88f89f90f91f92f93f94f95f96f97f98f99f";`, 
             function(err, rows) {
         });
         db.all(`SELECT * FROM filmprogramm;`, function(err,rows){
@@ -333,7 +333,10 @@ module.exports = function(app, db, passwordHasher){
 
     app.post("/getBuyConfirm", function(req, res){
 
-        sitzplatz = req.body.sitzplatz
+        reihe = req.body.reihe
+        nummer= req.body.nummer
+
+        
         db.get(`SELECT * FROM filmprogramm WHERE kennung = "${kennung}";`,function(err,rows){
             
             filmtitel = rows.filmtitel
@@ -343,7 +346,12 @@ module.exports = function(app, db, passwordHasher){
             // Saalsitze in Array
             var seats = stringToArraySeats(seatsDb);
             // Sitzplatz wird besetzt
-            seats[sitzplatz[0]-1][sitzplatz[1]-1] = (1).toString()
+            if(seats[reihe-1][nummer-1]=="b"){
+                res.render("seatSelect",{sessionVariables: req.session.sVariables, fehlertext: "Dieser Platz ist besetzt!"})
+            }else{
+            
+            seats[reihe-1][nummer-1] = "b"
+            
             // Saalsitze in String
             seatsDbUpdated = arrayToStringSeats(seats)
 
@@ -355,8 +363,9 @@ module.exports = function(app, db, passwordHasher){
                 console.log("updated!")
             })
 
-            res.render("buyConfirm",{kennung,sitzplatz,filmtitel,sessionVariables: req.session.sVariables})
+            res.render("buyConfirm",{kennung,reihe, nummer,filmtitel,sessionVariables: req.session.sVariables})}
         });
+   
     })
 
 
@@ -366,8 +375,8 @@ module.exports = function(app, db, passwordHasher){
     function arrayToStringSeats(seats){
         var seatsString = ""
 
-        for (var i = 0; i < 3;i++){
-            for (var j = 0; j < 3; j++){
+        for (var i = 0; i < 10;i++){
+            for (var j = 0; j < 10; j++){
                 seatsString += i.toString() + j.toString() + seats[i][j].toString();
             }
         }
@@ -379,15 +388,25 @@ module.exports = function(app, db, passwordHasher){
     /* Ändert den String aus der Datenbank in ein Array, um Zugriff und Lesbarkeit zu erleichtern*/
     function stringToArraySeats(seats){
         seatsArray = [
-            [0,0,0],
-            [0,0,0],
-            [0,0,0]
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0]
         ];
         count = 0;
-
-        for (var j = 0; j < 9; j++){
+        
+        for (var j = 0; j < 100; j++){
             seatsArray[seats[count]][seats[count+1]] = seats[count+2]
             count += 3
+            console.log(j)
+            console.log(seats[count],seats[count+1],seats[count+2])
+            
         }
 
         return seatsArray
