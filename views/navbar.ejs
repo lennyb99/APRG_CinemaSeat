@@ -26,7 +26,7 @@
                      D.h., dass alle ejs-Dateien, die die Navigationsbar benutzen, {sessionUserName: req.session.userName} übergeben bekommen haben müssen.
                      Sollte der Benutzer sich nicht eingeloggt haben, so ist die Variable sessionUserName undefinied. --> 
                 <% if(sessionVariables) {%>
-                        <li onclick="location.href='/goto_account_settings';" id="nav__submenu-item"> <a>Kontoeinstllungen von <%= sessionVariables.userName %></a></li>
+                        <li onclick="location.href='/goto_account_settings';" id="nav__submenu-item"> <a>Kontoeinstellungen von <%= sessionVariables.userName %></a></li>
                         <li onclick="location.href='/goto_logout';" id="nav__submenu-item"> <a>Logout</a></li>
 
         
