@@ -31,7 +31,12 @@ CREATE TABLE filmprogramm (
 /* Tabelle für Statistiken */
 
 /* Einfügen von Benutzern */
-INSERT INTO benutzer (email,vorname,nachname,passwort,rolle) VALUES ("Administrator@admin.de", "Administrator","Administrator", "1234", "admin"  );
+
+/* Passwort = geheim */
+INSERT INTO benutzer (email,vorname,nachname,passwort,rolle) VALUES ("admin@a.de", "Elon","Musk", "sha1$f0b6880e$1$b7a98c8156d17d12382d9c3b3781085efd3350fa", "admin"  );
+INSERT INTO benutzer (email,vorname,nachname,passwort,rolle) VALUES ("p@kreftig.de", "Pawel","Kreft", "sha1$f0b6880e$1$b7a98c8156d17d12382d9c3b3781085efd3350fa", "user"  );
+INSERT INTO benutzer (email,vorname,nachname,passwort,rolle) VALUES ("m@abesha.de", "Merlin","Abesha", "sha1$f0b6880e$1$b7a98c8156d17d12382d9c3b3781085efd3350fa", "user"  );
+INSERT INTO benutzer (email,vorname,nachname,passwort,rolle) VALUES ("l@burry.de", "Lennard","Burrmann", "sha1$f0b6880e$1$b7a98c8156d17d12382d9c3b3781085efd3350fa", "user"  );
 
 
 /* Einfügen von Filmen */

@@ -250,7 +250,6 @@ module.exports = function(app, db, passwordHasher){
             
             if(req.session.sVariables){
                 res.render("seatSelect", {kennung, titel, sessionVariables: req.session.sVariables, fehlertext});
-        
             }
             else{
             res.redirect("goto_login")
@@ -264,10 +263,9 @@ module.exports = function(app, db, passwordHasher){
 
     //Link zur Filmprogrammverwaltung
     app.post("/addMovie", function(req, res){
-        db.run( `INSERT INTO filmprogramm(filmtitel,beschreibung,kennung, trailer, eintrittspreis,fotourl,saalsitze) 
-                    VALUES ("${req.body.filmtitel}","${req.body.beschreibung}","${req.body.kennung}","${req.body.trailer}","${req.body.eintrittspreis}","${req.body.fotourl}","00f01f02f03f04f05f06f07f08f09f10f11f12f13f14f15f16f17f18f19f20f21f22f23f24f25f26f27f28f29f30f31f32f33f34f35f36f37f38f39f40f41f42f43f44f45f46f47f48f49f50f51f52f53f54f55f56f57f58f59f60f61f62f63f64f65f66f67f68f69f70f71f72f73f74f75f76f77f78f79f80f81f82f83f84f85f86f87f88f89f90f91f92f93f94f95f96f97f98f99f";`, 
-            function(err, rows) {
-        });
+        db.run( `INSERT INTO filmprogramm (filmtitel, beschreibung, kennung, trailer, fotourl, eintrittspreis, saalsitze) 
+                 VALUES ("${req.body.filmtitel}", "${req.body.beschreibung}", "${req.body.kennung}", "${req.body.trailer}", "${req.body.fotourl}", "${req.body.eintrittspreis}", "00f01f02f03f04f05f06f07f08f09f10f11f12f13f14f15f16f17f18f19f20f21f22f23f24f25f26f27f28f29f30f31f32f33f34f35f36f37f38f39f40f41f42f43f44f45f46f47f48f49f50f51f52f53f54f55f56f57f58f59f60f61f62f63f64f65f66f67f68f69f70f71f72f73f74f75f76f77f78f79f80f81f82f83f84f85f86f87f88f89f90f91f92f93f94f95f96f97f98f99f");`);
+
         db.all(`SELECT * FROM filmprogramm;`, function(err,rows){
             allUsers = res.allUsers;
             allMovies = []
@@ -278,6 +276,8 @@ module.exports = function(app, db, passwordHasher){
         })
     })
 
+
+    
     app.post("/goto_delete_movie", function (req, res) {  
         var delete_movie = req.body.delete_movie;
         db.run(`DELETE FROM filmprogramm WHERE kennung = "${delete_movie}";`,function(err,rows) {
