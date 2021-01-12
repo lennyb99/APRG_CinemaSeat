@@ -247,10 +247,20 @@ module.exports = function(app, db, passwordHasher){
             beschreibung = rows.beschreibung
             preis = rows.eintrittspreis
             trailer = rows.trailer
-    
-            res.render("seatSelect", {kennung, titel, sessionVariables: req.session.sVariables, fehlertext});
-        })  
-    })
+            
+            if(req.session.sVariables){
+                res.render("seatSelect", {kennung, titel, sessionVariables: req.session.sVariables, fehlertext});
+        
+            }
+            else{
+            res.redirect("goto_login")
+            }
+            
+        });  
+    });
+/*
+  
+*/
 
     //Link zur Filmprogrammverwaltung
     app.post("/addMovie", function(req, res){
