@@ -15,15 +15,16 @@
             <iframe width="560" height="315" src=<%=trailer.toString()%> frameborder="0" allowfullscreen></iframe>
         </div>
         <!------------------Beschreibung------------------->
-     
+        <br>
+        
         <p>
             <%=beschreibung%>
         </p>
    
         <!------------------Button zur Platzwahl------------------->
-        <p2>
-            <form action="/getSeatSelect" method="POST"> <button type="submit" name="kennung" value=<%=kennung%> class="ticket_button">Zur Sitzwahl</button></form>
-        </p2>
+       <div class="buttons">
+            <form action="/getSeatSelect" method="POST"> <button class="button" type="submit" name="kennung" value=<%=kennung%> class="ticket_button">Zur Sitzwahl</button></form>
+        </div>
 
 </head>
 

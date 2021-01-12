@@ -10,54 +10,54 @@
         <h1></h1>
         <body>
        <h1>
-           SITZWAHL
+           Sitzplatzwahl
        </h1> 
 
-       <h2>
-           Für den Film: <%=titel%>
-       </h2>
+       <h3>
+           Für den Film: <h2><%=titel%></h2>
+       </h3>
+       <h2 class="fehlertext">
          <% if (typeof fehlertext != undefined) { %>
         <%= fehlertext %>
         <% } %><br>
+         </h2>
 
-       <div class="box">
-          
-        
-          
-        <form action="/getBuyConfirm" method="POST">
-        <div class="input-container">
-            Sitzreihe im Saal:
-            <select name="reihe">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
+        <div class="box">
+                        
+            <form action="/getBuyConfirm" method="POST">
+            <div class="input-container">
+                <label for="reihe">Sitzreihe im Saal:</label> <br>
+                <select name="reihe">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
 
-            </select>
+                </select>
+                </div>
+            <div class="input-container">
+                   <label for="reihe">Sitznummer der Reihe:</label> <br>
+                <select name="nummer">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+
+
+                </select>
             </div>
-        <div class="input-container">
-            Sitznummer der Reihe:
-            <select name="nummer">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-
-
-            </select>
-        </div>
 
        <button type="submit" class="ticket_button"> Sitzplatzticket kaufen</button>
     </form>

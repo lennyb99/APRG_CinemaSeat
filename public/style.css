@@ -132,13 +132,7 @@ nav ul {
   box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.267);
 }
 
-p {
-  padding-left: 30%;
-  color: white;
-  font-size: medium;
-  text-align: left;
-  width: 80%;
-}
+
 .movie_prev {
   position: relative;
   padding: 10px;
@@ -329,6 +323,24 @@ Eingabeformular https://codepen.io/nikstech/pen/xmMxpr
   font-size: 12px;
 }
 
+p {
+  padding-left: 35.5%;
+  padding-right: 12%;
+  color: white;
+  font-size: medium;
+  font-weight: 200;
+  text-align: left;
+  width: 80%;
+}
+
+.fehlertext {
+  width: 500px;
+  margin: 30px auto 20px;
+  color: #ff0000;
+  text-align: left;
+  font-weight: 200;
+}
+
 h1 {
   width: 500px;
   margin: 30px auto 20px;
@@ -338,10 +350,11 @@ h1 {
 }
 
 h2 {
-  width: auto;
-  margin: 5px auto 20px;
-  color: #8F0812;
-  text-align: center;
+  width: 500px;
+  margin: 30px auto 20px;
+  color: #ffffff;
+  text-align: left;
+  font-weight: 200;
 }
 
 h3 {
@@ -358,6 +371,7 @@ h4 {
   margin: 5px auto 20px;
   color: #8F0812;
   font-weight: 400;
+  font-size: 25px;
   text-align: center;
 }
 
