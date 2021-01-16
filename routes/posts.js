@@ -150,6 +150,7 @@ module.exports = function(app, db, passwordHasher){
   //Kontodaten verändern Admin
   app.post("/goto_user_manager_edit", function (req, res){
     var edit_user = req.body.edit_user;
+    console.log(edit_user)
     db.get(`SELECT * FROM benutzer WHERE email = "${edit_user}"; `, function(err,rows){
         req.AdminEdit = {
             userName: rows.vorname,

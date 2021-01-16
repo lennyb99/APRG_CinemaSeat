@@ -27,8 +27,10 @@
                 <td><%= allUsers[i].nachname %></td> 
                 <td><%= allUsers[i].email   %></td>
                 <td><%= allUsers[i].rolle   %></td>
-                <td><form action="/goto_user_manager_edit" method="POST"> <button type="submit" name="edit_user" value=<%= allUsers[i].email %> class="button">Bearbeiten</a></td>
-                <td><form action="/goto_delete_account_admin" method="POST"> <button type="submit" name="delete_user" value=<%= allUsers[i].email %> class="button">  Löschen</button></form></div> </td>
+                <td><form action="/goto_user_manager_edit" method="POST"> 
+                    <button type="submit" name="edit_user" value=<%= allUsers[i].email %> class="button">Bearbeiten</button></form></td>
+                <td><form action="/goto_delete_account_admin" method="POST"> 
+                    <button type="submit" name="delete_user" value=<%= allUsers[i].email %> class="button">  Löschen</button></form></td></div> 
             </tr>
 
             <% } %>
