@@ -258,9 +258,7 @@ module.exports = function(app, db, passwordHasher){
             
         });  
     });
-/*
-  
-*/
+
 
     //Link zur Filmprogrammverwaltung
     app.post("/addMovie", function(req, res){
@@ -278,7 +276,7 @@ module.exports = function(app, db, passwordHasher){
     })
 
 
-    
+    /* Löschen der Filmeinträge */
     app.post("/goto_delete_movie", function (req, res) {  
         var delete_movie = req.body.delete_movie;
         db.run(`DELETE FROM filmprogramm WHERE kennung = "${delete_movie}";`,function(err,rows) {
@@ -294,6 +292,7 @@ module.exports = function(app, db, passwordHasher){
         })
     });
 
+    /* Lädt Dialog zur Bearbeitung der Filmeinträge */
     app.post("/goto_edit_movie", function (req, res){
         edit_movie = req.body.edit_movie
         db.all(`SELECT * FROM filmprogramm WHERE kennung = "${edit_movie}";`,function(err,rows){            
@@ -305,8 +304,12 @@ module.exports = function(app, db, passwordHasher){
         })
     })
 
+
+    /* Bearbeitung der Werte eines Eintrags aus dem Filmprogramm */
     app.post("/edit_Movie",function(req,res){
         kennung_old = req.body.kennung_old;
+        
+        // Überprüfung, welche Werte verändert wurden 
         if(!req.body.filmtitel_neu) {var filmtitel = selectedMovie.filmtitel}
         else{var filmtitel = req.body.filmtitel_neu} 
 
@@ -325,7 +328,7 @@ module.exports = function(app, db, passwordHasher){
         if(!req.body.fotourl_neu){var fotourl = selectedMovie.fotourl}
         else{var fotourl = req.body.fotourl_neu}
 
-        
+        // Updaten der Werte in die Datenbank
         db.run(`UPDATE filmprogramm SET filmtitel="${filmtitel}",beschreibung="${beschreibung}",kennung="${kennung}",eintrittspreis="${eintrittspreis}",trailer="${trailer}",fotourl="${fotourl}" WHERE kennung="${kennung_old}"`,function(err){ 
         })
         db.all(`SELECT * FROM filmprogramm;`, function(err,rows){
@@ -341,7 +344,7 @@ module.exports = function(app, db, passwordHasher){
     
 
     
-
+    /* Überschreibt die Datenbank an der übergebenen Reihe und Sitznummer des Saals in der Datenbank */
     app.post("/getBuyConfirm", function(req, res){
 
         reihe = req.body.reihe
@@ -356,11 +359,13 @@ module.exports = function(app, db, passwordHasher){
             var seatsDb = rows.saalsitze
             // Saalsitze in Array
             var seats = stringToArraySeats(seatsDb);
-            // Sitzplatz wird besetzt
+            
+            // Überprüfung, ob Sitzplatz bereits besetzt ist
             if(seats[reihe-1][nummer-1]=="b"){
                 res.render("seatSelect",{sessionVariables: req.session.sVariables, fehlertext: "Dieser Platz ist besetzt!"})
             }else{
-            
+
+            // Sitzplatz wird besetzt
             seats[reihe-1][nummer-1] = "b"
             
             // Saalsitze in String
